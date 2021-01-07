@@ -1,20 +1,20 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to IDEA",
-    "description": "Welcome to our new blog, IDEA. We hope you enjoy \nreading what we have to say!",
+    "path": "posts/2021-01-07-test-post-from-another-computer/",
+    "title": "Test post from another computer",
+    "description": "A short description of the post.",
     "author": [
       {
         "name": "Amos Lau",
         "url": "https://bochup.work"
       }
     ],
-    "date": "2021-01-04",
+    "date": "2021-01-07",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n",
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-01-04T20:58:59+08:00",
-    "input_file": "welcome.utf8.md"
+    "last_modified": "2021-01-07T20:04:52+08:00",
+    "input_file": "test-post-from-another-computer.utf8.md"
   },
   {
     "path": "posts/2021-01-04-my-first-post/",
@@ -32,5 +32,22 @@
     "preview": "posts/2021-01-04-my-first-post/my-first-post_files/figure-html5/unnamed-chunk-3-1.png",
     "last_modified": "2021-01-05T20:24:43+08:00",
     "input_file": "my-first-post.utf8.md"
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to IDEA",
+    "description": "Welcome to our new blog, IDEA. We hope you enjoy \nreading what we have to say!",
+    "author": [
+      {
+        "name": "Amos Lau",
+        "url": "https://bochup.work"
+      }
+    ],
+    "date": "2021-01-04",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-01-04T20:58:59+08:00",
+    "input_file": "welcome.utf8.md"
   }
 ]
