@@ -1,13 +1,12 @@
 ---
-title: "Welcome to IDEA"
+title: "Welcome to Amos' Visual Analytics Blog"
 description: |
-  Welcome to our new blog, IDEA. We hope you enjoy 
-  reading what we have to say!
+  Welcome to my blog. This blog was started for my masters module on Visual Analytics, and will be updated as and when I find other interesting things to write on.
 author:
   - name: Amos Lau 
     url: https://bochup.work
-    affiliation: School of Information Systems, Singapore Management University
-    affiliation_url: https://sis.smu.edu.sg/
+    affiliation: School of Computing and Information Systems, Singapore Management University
+    affiliation_url: https://scis.smu.edu.sg/
 date: 01-04-2021
 output:
   distill::distill_article:
