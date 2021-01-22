@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "description": "This blog was started for my masters module on Visual Analytics, and will be updated as and when I find other interesting things to write on.",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-01-22T15:45:15+08:00"
+      "last_modified": "2021-01-22T15:49:11+08:00"
     },
     {
       "path": "index.html",
-      "title": "IDEA",
+      "title": "Amos' Visual Analytics Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-01-22T15:45:16+08:00"
+      "last_modified": "2021-01-22T15:49:12+08:00"
     }
   ],
   "collections": ["posts/posts.json"]

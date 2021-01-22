@@ -1,7 +1,7 @@
 ---
 title: "About this blog"
 description: |
-  Some additional details about the blog
+  This blog was started for my masters module on Visual Analytics, and will be updated as and when I find other interesting things to write on.
 ---
 
 ```{r setup, include=FALSE}

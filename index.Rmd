@@ -1,5 +1,5 @@
 ---
-title: "IDEA"
+title: "Amos' Visual Analytics Blog"
 site: distill::distill_website
 listing: posts
 ---
