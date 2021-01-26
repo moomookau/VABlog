@@ -1,8 +1,8 @@
 ---
 title: "DataViz Makeover 1"
 description: |
-  This post will be looking at Chart 6 Resident labour force by age in MOM's [Report: Labour Force in Singapore 2019](https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx) and seeing if there are possible areas for improvement.
-preview: posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png
+  This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.
+preview: https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png
 author:
   - name: Amos Lau
     url: https://bochup.work
@@ -18,7 +18,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Introduction
 
+This post will be looking at Chart 6 Resident labour force by age in MOM's [Report: Labour Force in Singapore 2019](https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx) to identify possible areas of improvement. We will also come up with a proposed design and implement in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.
+
 # Task
+
+The tasks can be summarised as follows:
+
+1.  Critic the existing visualisation
+2.  Sketch a proposed design
+3.  Implement the proposed design
+4.  Provide steps for replication of the proposed design
+5.  Major observations derived from the proposed design
 
 ## Critic
 
@@ -52,13 +62,13 @@ The following is a sketch of the proposed design.
 
 > c.  Using Tableau, design the proposed data visualisation.
 
-The proposed data visualisation can be found at...
+The proposed data visualisation has been uploaded to Tableau Public and can be found [here](https://public.tableau.com/profile/amos.lau#!/vizhome/DataVizMakeover1_16116616219730/Dashboard1).
 
 ## Step-by-step Description
 
 > d.  Provide step-by-step description on how the data visualisation was prepared.
 
-The following are sections describe how the data visualisation was prepared.
+The following sections describe how the data visualisation was prepared.
 
 ### Data preparation
 
@@ -176,6 +186,12 @@ The final product of the proposed visualisation in the form of a dashboard is as
 
 > e.  Describe three major observations revealed by the data visualisation prepared.
 
-Using the proposed data visualisation...
+Using the proposed data visualisation, we can observe the following:
+
+1.  There are more older residents in the labour force in 2019 compared to 2009, both in terms of percentage and absolute value.
+2.  There are more total older residents, showing that people are living longer.
+3.  The percentage of older residents in the labour force has been increasing over the years, signalling an ageing workforce.
 
 # Conclusion
+
+In this post, we look at MOM's statement and chart describing how the median age of the workforce has shifted from 2009 to 2019. We identify areas of improvement in terms of clarity and aesthetics for the chart and propose changes to improve the visualisation. We implemented the changes in Tableau and were able to arrive at more insights than the original visualisation.
