@@ -1,7 +1,8 @@
 ---
 title: "DataViz Makeover 1"
 description: |
-  A short description of the post.
+  This post will be looking at Chart 6 Resident labour force by age in MOM's [Report: Labour Force in Singapore 2019](https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx) and seeing if there are possible areas for improvement.
+preview: posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png
 author:
   - name: Amos Lau
     url: https://bochup.work
@@ -11,13 +12,170 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+# Introduction
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+# Task
 
+## Critic
 
+> a.  Critic the graph from both its clarity and aesthetics. At least three from each evaluation criterion.
+
+In terms of **clarity**, the following areas could be improved:
+
+1.  The statement above the graph uses age ranges like 55 & over and 25 to 54. However, the graph itself uses a more granular age range. This may be result in viewers having difficult to relate to the statement.
+
+2.  The statement above the graph refers to the Labour Force Participation Rate (LFPR), but this data is not captured within the graph. This may be confusing to the viewer as they may think the chart represents LFPR.
+
+3.  The line chart used may not be the best representation for the data as lines are usually used when dealing with continuous data to indicate changes or trends. Since the data presented is of categorical data, it may make more sense to use an alternative representation like a bar chart.
+
+4.  The lines that show the Median Age for both June 2009 and June 2019 is an attempt to show the relative position of the median. For example, the line for the median age for June 2009 is 1/4 way between the tick marks of 40-44. However, this may confuse the viewers as the x-axis is not meant to be continuous.
+
+In terms of **aesthetics**, the following areas could be improved:
+
+1.  There is no y-axis for the graph, making it difficult for the viewer to know the value of the points.
+
+2.  The table below is a waste of ink as it is visually difficult for a viewer to compare the numbers.
+
+3.  The chart title is generic and could be changed to something more impactful so the viewer knows what is the message we want to convey.
+
+## Sketch of Proposed Design
+
+> b.  With reference to the critics above, suggest alternative graphical presentation to improve the current design. The proposed alternative data visualisation must be in **static** form. Sketch out the proposed design. Support your design by describing the advantages or which part of the issue(s) your alternative design try to overcome.
+
+The following is a sketch of the proposed design.
+
+## Proposed Data Visualisation
+
+> c.  Using Tableau, design the proposed data visualisation.
+
+The proposed data visualisation can be found at...
+
+## Step-by-step Description
+
+> d.  Provide step-by-step description on how the data visualisation was prepared.
+
+The following are sections describe how the data visualisation was prepared.
+
+### Data preparation
+
+The data used for the visualisations were gotten the Ministry of Manpower's website at <https://stats.mom.gov.sg/Pages/Labour-Force-Tables2019.aspx>. Specifically, [Table 5 Resident Labour Force Participation Rate by Age and Sex, 2009 -- 2019 (June)](https://stats.mom.gov.sg/iMAS_Tables1/LabourForce/LabourForce_2019/mrsd_2019LabourForce_T5.xlsx) and [Table 7 Resident Labour Force Aged Fifteen Years and Over by Age and Sex, 2009 -- 2019 (June)](https://stats.mom.gov.sg/iMAS_Tables1/LabourForce/LabourForce_2019/mrsd_2019LabourForce_T7.xlsx) were used for our data visualisation.
+
+![Screenshot of Table 5 download from MOM's website](images/1.%20ExcelFile.png)
+
+The data file was in Excel format, but had to be cleaned in Excel by removing the extra columns and excess rows. Both the files were then merged into a single csv file, with an additional column indicating the type where LFPR refers to the Labour Force Participation Rate and RLF refers to the Resident Labour Force:
+
+![Screenshot of csv file](images/2.%20csv%20format.png)
+
+Next, the data was loaded into Tableau Prep Builder for further preparation.
+
+The data was first pivoted to convert the individual year columns into a single column:
+
+![Individual year columns were pivoted and the resulting columns were named as Year and Value](images/3.%20Pivot%20Years.png)
+
+Next, the data was unpivoted from the Data and Value columns to get 2 columns for LFPR and RLF:
+
+![Unpivot data](images/4.%20Unpivot%20Data.png)
+
+A calculated field was created to get the Residents Outside Labour Force (ROLF):
+
+    [RLF]/[LFPR]*(100-[LFPR])
+
+The column on LFPR was no longer required and was deleted.
+
+Next, the table was pivoted on the RLF and ROLF columns and given meaningful names.
+
+![Pivot RLF and ROLF columns](images/5.%20Pivot%20RLF%20and%20ROLF.png)
+
+Finally, the prepared data was saved for further use in Tableau:
+
+![Output data for use in Tableau](images/6.%20Output%20Data.png)
+
+### Load Data
+
+The prepared data was loaded in Tableau:
+
+![Data was loaded in Tableau](images/7.%20Load%20Data-01.png)
+
+The Age Group column was renamed to Age Group (Original). The renaming was done such that we can group this column to aggregate the data further. This will be elaborated on later.
+
+The Year column was renamed to Date and a calculated field was calculated to extract the year as a numerical value:
+
+![Creation of Year Column](images/8.%20Create%20Year%20Field.png)
+
+### Comparison of 2009 and 2019's Population and Labour Breakdown
+
+We first create a new Tableau worksheet to compare the population and labour breakdown of 2009 and 2019. The following steps were done to create the worksheet:
+
+1.  Drag the Residents (Thousands) measure to the Column shelf.
+
+2.  Drag the Age Group (Original) dimension to the Row shelf.
+
+3.  We further aggregate the data by grouping the age groups into 3 groups - 15 - 24, 25 - 55, and 55 & Over.
+
+    ![Further aggregate the Age Groups](images/9.%20Create%20Age%20Group.png)
+
+4.  We add the Year field into the Rows shelf after the Age Group field. Next, we change the year field to a Dimension instead of a Measure, and for it to be a discrete dimension since we only want to compare 2009 and 2019.
+
+5.  We add the Year field into the filter, make it into a Discrete Dimension, and filter the years 2009 and 2019.
+
+6.  We drag Age Group to the Colour icon to colour the bar charts by the different age groups.
+
+7.  We drag Type to the Detail icon, and change Detail to Colour in order to further colour the age groups by the Resident Labour Force (RLF) and the Residents Outside of Labour Force (ROLF).
+
+8.  We drag Resident (Thousands) to the Label icon to add a Label on the bar charts. We want to display the percentage breakdown of RLF and ROLF and so we use a "Percent of Total" quick table calculation. The calculation was computed using "Table (Across)".
+
+9.  We sort according to Age Group (older groups on top) and Year (2019 on top).
+
+10. We change the colour of the items, using 3 distinct colours for each age group and lighter and darker shades to differentiate the RLF and ROLF.
+
+    ![Legend Colours](images/10.%20Legend%20Colours.png)
+
+11. We resize the chart to make the bars thicker.
+
+12. We annotate the chart to provide our insights.
+
+13. We provide meaningful titles to the chart and the legend.
+
+The final product of the worksheet is as follows:
+
+![Final Product of Worksheet](images/11.%20Compare%202009%202019.png)
+
+### Comparing Breakdown of Labour Force by Age Group from 2009 to 2019
+
+Next we create a worksheet to compare the breakdown of labour force from 2009 to 2019. The following steps were done to create the worksheet:
+
+1.  We drag the Year field to the Columns shelf and change it to a discrete dimension.
+2.  We drag the Residents (Thousands) measure to the Rows shelf. As we want to show the % breakdown per year, we use a quick table calculation to calculate the % of total, computing it using Table (Down). We use the same column as the label for the bar graphs.
+3.  We drag the Type field to the Filters shelf. As we want to only show the breakdown for the labour force, we filter by RLF type.
+4.  We drag Age Group to the Colours icon to colour the bar charts by age group.
+5.  We sort the stacked bars by Age Group with the youngest being below and oldest on top.
+6.  We change the colours to make them consistent with our previous worksheet.
+7.  We annotate the chart to provide our insights.
+8.  We provide meaningful titles to the chart, y-axis and the legend.
+
+The final product of the worksheet is as follows:
+
+![Breakdown of Resident Labour Force from 2009 to 2019](images/12.%20Breakdown%20of%20Resident%20Labour%20Force%20from%202009%20to%202019.png)
+
+## Combining it together into a Dashboard
+
+Finally, we create a Dashboard to combine both charts. The following steps were done to create the worksheet:
+
+1.  Drag both worksheets into the dashboard area.
+2.  We add texts the top and bottom of the dashboard for the title, description of the message we want the viewer to take away, and the sources used for the charts.
+
+The final product of the proposed visualisation in the form of a dashboard is as follows:
+
+![Final Product of Proposed Visualisation](images/13.%20Final%20Dashboard.png)
+
+## Major Observations
+
+> e.  Describe three major observations revealed by the data visualisation prepared.
+
+Using the proposed data visualisation...
+
+# Conclusion
