@@ -3,6 +3,7 @@ title: "Amos' Visual Analytics Blog"
 description: |
   Amos' Visual Analytics Blog
 output_dir: "_site"
+google_analytics: "G-DM4NB45LNB"
 navbar:
   right:
     - text: "Home"
