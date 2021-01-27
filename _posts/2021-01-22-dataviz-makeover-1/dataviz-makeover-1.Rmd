@@ -56,11 +56,19 @@ In terms of **aesthetics**, the following areas could be improved:
 
 > b.  With reference to the critics above, suggest alternative graphical presentation to improve the current design. The proposed alternative data visualisation must be in **static** form. Sketch out the proposed design. Support your design by describing the advantages or which part of the issue(s) your alternative design try to overcome.
 
-The following is a sketch of the proposed design.
+The following is a sketch of the proposed design:
+
+![Sketch of Proposed Design](images/0.%20Proposed%20Sketch.png)
+
+The proposed design comprises two charts. The chart on the left compare the resident labour force and resident population for the different age groups for 2009 and 2019. The stacked bar chart will show the absolute numbers of the resident labour force and the residents outside of labour force, with the total length of the bar chart giving the resident population. Using stacked bars will alow us to visualise how the resident labour force and total population has changed for 2009 and 2019.
+
+The chart on the right will provide a 100% breakdown of the various age groups from 2009 to 2019. This will allow us to observe the trend over the years and see if there has been any shift in the composition.
 
 ## Proposed Data Visualisation
 
 > c.  Using Tableau, design the proposed data visualisation.
+
+![Proposed visualisation](images/13.%20Final%20Dashboard-01.png)
 
 The proposed data visualisation has been uploaded to Tableau Public and can be found [here](https://public.tableau.com/profile/amos.lau#!/vizhome/DataVizMakeover1_16116616219730/Dashboard1).
 
