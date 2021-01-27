@@ -10,6 +10,8 @@ date: 01-22-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +20,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Introduction
 
-This post will be looking at Chart 6 Resident labour force by age in MOM's [Report: Labour Force in Singapore 2019](https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx) to identify possible areas of improvement. We will also come up with a proposed design and implement in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.
+This post will be looking at Chart 6 Resident labour force by age in MOM's [Report: Labour Force in Singapore 2019](https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx) to identify possible areas of improvement.
+
+![Original Visualisation](images/0.%20Original%20Visualisation.png)
+
+We will also come up with a proposed design and implement in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.
 
 # Task
 
@@ -179,7 +185,7 @@ The final product of the worksheet is as follows:
 
 ![Breakdown of Resident Labour Force from 2009 to 2019](images/12.%20Breakdown%20of%20Resident%20Labour%20Force%20from%202009%20to%202019.png)
 
-## Combining it together into a Dashboard
+### Combining it together into a Dashboard
 
 Finally, we create a Dashboard to combine both charts. The following steps were done to create the worksheet:
 

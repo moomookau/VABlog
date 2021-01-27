@@ -111,12 +111,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz Makeover 1"]},{"type":"character","attributes":{},"value":["This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas."]},{"type":"character","attributes":{},"value":["https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://bochup.work"]}]}]},{"type":"character","attributes":{},"value":["01-22-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz Makeover 1"]},{"type":"character","attributes":{},"value":["This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas."]},{"type":"character","attributes":{},"value":["https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://bochup.work"]}]}]},{"type":"character","attributes":{},"value":["01-22-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.6/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","images/0. Proposed Sketch.png","images/1. ExcelFile.png","images/10. Legend Colours.png","images/11. Compare 2009 2019.png","images/12. Breakdown of Resident Labour Force from 2009 to 2019.png","images/13. Final Dashboard-01.png","images/13. Final Dashboard.png","images/2. csv format.png","images/3. Pivot Years.png","images/4. Unpivot Data.png","images/5. Pivot RLF and ROLF.png","images/6. Output Data.png","images/7. Load Data-01.png","images/7. Load Data.png","images/8. Create Year Field.png","images/9. Create Age Group.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.6/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","images/0. Original Visualisation.png","images/0. Proposed Sketch.png","images/1. ExcelFile.png","images/10. Legend Colours.png","images/11. Compare 2009 2019.png","images/12. Breakdown of Resident Labour Force from 2009 to 2019.png","images/13. Final Dashboard-01.png","images/13. Final Dashboard.png","images/2. csv format.png","images/3. Pivot Years.png","images/4. Unpivot Data.png","images/5. Pivot RLF and ROLF.png","images/6. Output Data.png","images/7. Load Data-01.png","images/7. Load Data.png","images/8. Create Year Field.png","images/9. Create Age Group.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2059,8 +2059,36 @@ DataViz Makeover
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#task">Task</a>
+<ul>
+<li><a href="#critic">Critic</a></li>
+<li><a href="#sketch-of-proposed-design">Sketch of Proposed Design</a></li>
+<li><a href="#proposed-data-visualisation">Proposed Data Visualisation</a></li>
+<li><a href="#step-by-step-description">Step-by-step Description</a>
+<ul>
+<li><a href="#data-preparation">Data preparation</a></li>
+<li><a href="#load-data">Load Data</a></li>
+<li><a href="#comparison-of-2009-and-2019s-population-and-labour-breakdown">Comparison of 2009 and 2019’s Population and Labour Breakdown</a></li>
+<li><a href="#comparing-breakdown-of-labour-force-by-age-group-from-2009-to-2019">Comparing Breakdown of Labour Force by Age Group from 2009 to 2019</a></li>
+<li><a href="#combining-it-together-into-a-dashboard">Combining it together into a Dashboard</a></li>
+</ul></li>
+<li><a href="#major-observations">Major Observations</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</nav>
+</div>
 <h1 id="introduction">Introduction</h1>
-<p>This post will be looking at Chart 6 Resident labour force by age in MOM’s <a href="https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx">Report: Labour Force in Singapore 2019</a> to identify possible areas of improvement. We will also come up with a proposed design and implement in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.</p>
+<p>This post will be looking at Chart 6 Resident labour force by age in MOM’s <a href="https://stats.mom.gov.sg/Pages/Labour-Force-In-Singapore-2019.aspx">Report: Labour Force in Singapore 2019</a> to identify possible areas of improvement.</p>
+<figure>
+<img src="images/0.%20Original%20Visualisation.png" alt="Original Visualisation" /><figcaption aria-hidden="true">Original Visualisation</figcaption>
+</figure>
+<p>We will also come up with a proposed design and implement in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.</p>
 <h1 id="task">Task</h1>
 <p>The tasks can be summarised as follows:</p>
 <ol type="1">
@@ -2200,7 +2228,7 @@ DataViz Makeover
 <figure>
 <img src="images/12.%20Breakdown%20of%20Resident%20Labour%20Force%20from%202009%20to%202019.png" alt="Breakdown of Resident Labour Force from 2009 to 2019" /><figcaption aria-hidden="true">Breakdown of Resident Labour Force from 2009 to 2019</figcaption>
 </figure>
-<h2 id="combining-it-together-into-a-dashboard">Combining it together into a Dashboard</h2>
+<h3 id="combining-it-together-into-a-dashboard">Combining it together into a Dashboard</h3>
 <p>Finally, we create a Dashboard to combine both charts. The following steps were done to create the worksheet:</p>
 <ol type="1">
 <li>Drag both worksheets into the dashboard area.</li>
