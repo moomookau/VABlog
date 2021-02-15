@@ -1,0 +1,8 @@
+figure {
+	text-align: center;
+}
+
+figure img {
+	max-width: 100%;
+	width: unset;
+}
