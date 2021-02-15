@@ -353,3 +353,8 @@ Using the proposed data visualisations, we can observe the following:
 # 3. Conclusion
 
 In this post, we look at how to present vaccine survey data for various countries. We identify areas of improvement in terms of clarity and aesthetics for the chart and propose changes to improve the visualisation. We further added interactive elements to enhance viewers' experience to analyse the data. We implemented the changes in Tableau and were able to arrive at more insights than the original visualisation.
+
+# 4. References
+
+1.  Wexler, S. (2018, August 20). Showing uncertainty in survey results. Retrieved February 15, 2021, from <https://www.datarevelations.com/resources/showing-uncertainty/>
+2.  Wilke, C. O. (2019). 16 Visualizing uncertainty. In *Fundamentals of data visualization: A primer on making informative and compelling figures*. Retrieved February 15, 2021, from <https://clauswilke.com/dataviz/visualizing-uncertainty.html>
