@@ -2,7 +2,7 @@
 title: "DataViz Makeover 2"
 description: |
   This post will be looking at two data visualisations created by a research scientist of a research team conducting a study to understand the willingness of the public to take COVID-19 vaccinations.
-preview: https://va.moomookau.org/posts/2021-02-05-dataviz-makeover-2/images/03FinalVisualisation.png
+preview: https://va.moomookau.org/posts/2021-02-05-dataviz-makeover-2/images/03ProposedDashboard.png
 author:
   - name: Amos Lau
     url: https://www.linkedin.com/in/amos-lau/
@@ -42,9 +42,9 @@ The tasks can be summarised as follows:
 
 In terms of **clarity**, the following areas could be improved:
 
-1.  There is no lead in paragraph for the visualisations, making in hard to determine what message is being conveyed to the viewer.
+1.  There is no lead in paragraph for the visualisations, making it hard to determine what message is being conveyed to the viewer.
 
-2.  The title of the left visualisation is supposedly about whether a country is pro-vaccine. However, it only utilises the response for the question "If a Covid-19 vaccine were made available to me this week, I would definitely get it." to draw the conclusion. However, there could be other factors which contribute to how people would respond to the question e.g. the prevalence of COVID-19 in a country, the attitude of the people to COVID-19, the standard of healthcare in a country.
+2.  The title of the left visualisation is supposedly about whether a country is pro-vaccine. However, it only utilises responses for the question "If a Covid-19 vaccine were made available to me this week, I would definitely get it." to draw this conclusion. There could be other factors which contribute to how people would respond to the question besides how pro-vaccine they are e.g. the prevalence of COVID-19 in a country, the attitude of the people to COVID-19, the standard of healthcare in a country.
 
 3.  Both the visualisations represent the results as a percentage of the total records for each country. However, the viewer is not able to tell how many total results there are and may not know how representative the results is of the country. For example, a graph of only 10 results will not be as good a representation of a population compared to a graph of 1000 results.
 
@@ -74,23 +74,27 @@ The following is a sketch of the proposed design:
 
 ![Sketch of Proposed Design](images/02ProposedSketch.png)
 
-The proposed design comprises various controls on the top and two visualisations.
+The proposed design comprises three visualisations and a panel with controls.
+
+The visualisation in the top left shows the proportion of survey respondents who agree with a survey question by the various countries. It further includes the 95% and 99% error bars to show viewers the amount of uncertainty based on the number of survey respondents.
+
+The visualisation in the bottom left shows the further breakdown of the survey results by various metrics such as **Age**, **Gender**, **Household Size** or number of **Household Children**.
+
+The visualisation in the top right uses divergent stacked bars to present the survey data for each country.
 
 The controls will allow the viewer to select the following:
 
--   Survey Question
+-   **Survey Question** - This allows the user to select various questions related to vaccines for analysis, as opposed to using only one question to make a conclusion.
 
--   Show Measures - Actual Mean, 95% and 99% error bars
+-   **Show Measures** - This allows the user to select what elements to display on the charts, whether to include the actual percentage, the 95% error bars and/or the 99% error bars.
 
--   Breakdown By - To further breakdown the results by Age, Gender, Household Size, or Household Children
+-   **Agree Calculation** - This allows the user to choose which survey responses to include when showing the proportion of respondents who agree.
 
--   Sort By - To sort alphabetically by Country name or the Value
+-   **Breakdown By** - This allows the user to to further breakdown the results by Age, Gender, Household Size, or Household Children.
 
--   Sort Order - To sort in an ascending or descending manner
+-   **Sort By** - This allows the user to sort either alphabetically by Country name or by the Value.
 
-The top visualisation shows the proportion of survey respondents who agree with the survey question. It further includes the 95% and 99% error bars.
-
-The bottom visualisation further breakdowns the survey results by various metrics.
+-   **Sort Order** - This allows the user to sort in an ascending or descending manner.
 
 The proposed design improves on the original design on the following areas:
 
@@ -102,11 +106,13 @@ The proposed design improves on the original design on the following areas:
 
 -   The controls allow the viewer to sort the results in a meaningful way. Sorting by country allows consistent placement to compare across various survey questions, while sorting by value allows comparison on how the different countries responded to the surveys.
 
+-   Divergent stacked bars allow better comparison of Likert scale data as compared to the original.
+
 ## 2.3 Proposed Data Visualisation
 
 > c.  Using Tableau, design the proposed data visualisation.
 
-![Proposed Data Visualisation](images/03FinalVisualisation.png)
+![Proposed Data Visualisation](images/03ProposedDashboard.png)
 
 The proposed data visualisation has been uploaded to Tableau Public and can be found [here](https://public.tableau.com/views/COVID-19VaccineSurveyResults/VaccineSurveyDashboard?:language=en&:display_count=y&publish=yes&:origin=viz_share_link).
 
@@ -124,7 +130,7 @@ Tableau Prep Builder (TPB) was used to prepare our data file. First, all the fil
 
 ![Wildcard Union of all the files](images/04WildcardUnion.png)
 
-Each data file contained around 400 columns of data and each row of data was comprised survey responses and survey respondent demographics. Only data with vaccine related questions (e.g. vac_1, vac2_1, vac3) as well as survey respondents' demographics (e.g. gender, age) were retained. We excluded the other columns of data that were not used. The following columns were retained:
+Each data file contained around 400 columns of data and each row of data comprised survey responses and survey respondent demographics. Only data with vaccine related questions (e.g. vac_1, vac2_1, vac3) as well as survey respondents' demographics (e.g. gender, age) were retained. We excluded the other columns of data that were not used. The following columns were retained:
 
 ![Columns Retained](images/05ColumnsRetained.png)
 
@@ -132,7 +138,7 @@ Next, a "clean" step was added. For cleaning, we first filter responses which we
 
 ![Filtering data by date](images/06FilteringByDate.png)
 
-Next, we renamed the file paths column as "Country". We also renamed all the values e.g. australia.csv, singapore.csv to their proper country names e.g. Australia, Singapore:
+Next, we renamed the file paths column as "Country". We also renamed all the values e.g. australia.csv, singapore.csv to their proper country names e.g. Australia, Singapore by using title case and remove the .csv behind.
 
 ![Renaming Country](images/07RenameCountry.png)
 
@@ -142,67 +148,85 @@ Finally, the prepared data was saved for further use in Tableau:
 
 ### 2.4.2 Load Data
 
-The prepared data was loaded in Tableau. Next, we created groups for the Age, Household Children, and Household Size columns. This allowed us to present the data in an aggregated manner.
+We first load the data in Tableau by dragging the exported .hyper file into Tableau.
+
+Next, we created groups for the Age, Household Size, and Household Children columns. This allowed us to present the data in an aggregated manner.
 
 ![Grouping for Age](images/09AgeGroup.png)
 
-![Grouping for Household Children](images/10HouseholdChildrenGroup.png)
+![Grouping for Household Size](images/10HouseholdSizeGroup.png)
 
-![Grouping for Household Size](images/11HouseholdSizeGroup.png)
+![Grouping for Household Children](images/11HouseholdChildrenGroup.png)
 
 ### 2.4.3 Creating Parameters
 
-A new sheet is created for the first visualisation. In order to allow interactivity for the visualisations, we create a few parameters.
+A new sheet called "Survey Results" was created for the first visualisation. In order to allow interactivity for the visualisations, we create a few parameters.
 
-We first create a parameter to let the viewer choose the survey question. This parameter will be used to control which survey question the visualisation will show the results for.
+We first create a parameter to let the viewer choose the survey question. This parameter will be used to control which survey question the visualisation will show the results for. We change the parameter data type to "String" and choose "List" for allowable values. We type in the various values and their corresponding questions in the list below. The questions to values mappings are gotten from the codebook excel spreadsheet included with the data.
 
-![Parameter for Survey Question](images/12ParamSurveyQuestion.png)
+![Parameter for Survey Question](images/12ParamSurveyQn.png)
 
-We created a corresponding calculated field to select the appropriate column based on the choice of survey question.
+We created a corresponding calculated field to select the appropriate column of our data based on the choice of survey question.
 
-![Calculated Field for Survey Field](images/13CalculatedFieldSurveyField.png)
+![Calculated Field for Survey Field](images/13SurveyField.png)
 
-Next, we create a parameter called "Show". This will allow the viewer to select which elements to show, i.e. whether to show the Actual Mean, the 95% error bar, and/or the 99% error bar.
+Next, we create a parameter called "Show". We change the parameter data type to "String" and choose "List" for allowable values. We type in the various values and their text to display in the list below. This will allow the viewer to select which elements to show for the visualisations, i.e. whether to show the Actual Mean, the 95% error bar, and/or the 99% error bar.
 
 ![Parameter for Show](images/14ParamShow.png)
 
-We create a parameter called "Breakdown By" to allow the viewer to breakdown the results by various metrics.
+We create a parameter called "Breakdown By" to allow the viewer to breakdown the results by various metrics. We change the parameter data type to "String" and choose "List" for allowable values. We type in the various values in the list below.
 
 ![Parameter to Breakdown By](images/15ParamBreakdownBy.png)
 
 We create a corresponding calculated field to select the appropriate column based on the viewer's selection.
 
-![Calculated Field for Breakdown Field](images/16CalculatedFieldBreakdownField.png)
+![Calculated Field for Breakdown Field](images/16BreakdownField.png)
 
-Lastly, we create two more parameters to allow the viewer to control the sorting.
+We create a parameter "Agree Calculation" to allow the viewer to choose which survey responses to include when calculating the percentage of respondents who agree, i.e. whether to only use "Strongly Agree" or both "Strongly Agree" and "Agree". We use the integer data type with values of "1" and "2" as these will be used in our formula to calculate the percentage.
+
+![Parameter for Agree Calculation](images/19ParamAgree.png)
+
+Lastly, we create two more parameters "Sort By" and "Sort Order" to allow the viewer to control the sorting. For "Sort By", we use the string data type and allow the viewer to sort by either "Country" or "Value". For "Sort Order", we use the integer data type and use "1" for Ascending and "-1" for Descending. This will be used in a subsequent formula to control the sort order.
 
 ![Parameter for Sort By](images/17ParamSortBy.png)
 
-![Parameter for Sort Order](images/17ParamSortOrder.png)
+![Parameter for Sort Order](images/18ParamSortOrder.png)
 
 Finally, we right click on all the parameters and select "Show Parameter" to show them on the worksheet.
 
-### 2.4.4 Creating Fields for Visualisation
+![Select Show Parameter to add them to the worksheet](images/20ShowParam.png)
+
+![Parameters are added to the right of the worksheet](images/21ParamsControl.png)
+
+### 2.4.4 Creating Fields for Percentage and Error Bars Visualisation
 
 Next, we create the various fields that will support the visualisation.
 
+We create a calculated field called "Number of Respondents" and set the value to 1. This field will be used to count the number of respondents.
+
+![Calculated Field for Number of Respondents](images/22NumberOfRespondents.png)
+
 We create a field called "Total Respondents". This field will sum up the total number of respondents, excluding the aggregation at the "Country" level. This field will mainly be used for the title to show the total number of respondents.
 
-![Total Respondents Field](images/18TotalRespondents.png)
+![Calculated Field for Total Respondents](images/23TotalRespondents.png)
 
-Next, we create a field for the percentage of respondents who agree. This is computed by summing the people who responded with "1 - Strongly agree" or "2" and dividing it by the number of respondents.
+We create a field called "Score". This field will get the score of the data in integer ranging from 1 to 5. Note that the survey responses are "1 - Strongly Agree", "2", "3", "4", and "5 - Strongly Disagree". Hence, we take the leftmost character of the response and convert it to integer to get the score.
 
-![% Agree Field](images/19PercentAgree.png)
+![Calculated Field for Score](images/24Score.png)
 
-Next, we create a field for the total mean, without aggregation at the "Country" level. Similar to total respondents, this will be used for the title as well as the reference line.
+Next, we create a field for the percentage of respondents who agree. This is computed by summing the people who meet the threshold set in the "Agree Calculation" parameter and dividing it by the number of respondents.
 
-![Total Mean Field](images/20Mean.png)
+![Calculated Field for Percentage of Respondents who Agree](images/25PercentAgree.png)
 
-Next, we create two constant fields for the 95% and 99% z values. These will be used to compute the 95% and 99% error bars.
+Next, we create a field for the overall average, without aggregation at the "Country" level. Similar to total respondents, this will be used for the title as well as the reference line.
 
-![Z 95% Constant Value](images/21ZUpper95.png)
+![Overall Percentage of Respondents who Agree](images/26OverallPercentAgree.png)
 
-![Z 99% Constant Value](images/22ZUpper99.png)
+Next, we create two constant fields for the 95% and 99% z score values of 1.959964 and 2.575829 respectively. These will be used to compute the 95% and 99% error bars.
+
+![Z 95% Constant Value](images/27Z95.png)
+
+![Z 99% Constant Value](images/28Z99.png)
 
 Next, we create a field for "Standard Error". Standard error is computed using the following formula:
 
@@ -210,127 +234,355 @@ $$\sqrt{\frac{percentage * (1-percentage)}{sample size}}$$
 
 This is translated to the following calculated field:
 
-![Standard Error Field](images/23StandardError.png)
+![Calculated Field for Standard Error](images/29StandardError.png)
 
-Next, we create the fields to get the margin of error for 95% and 99%:
+Next, we create the fields to get the margins of error for 95% and 99%. These are computed using the standard error multiplied by the respective z scores.
 
-![Margin of Error 95%](images/24MarginOfError95.png)
+![Calculated field for 95% Margin of Error](images/30MarginOfError95.png)
 
-![Margin of Error 99%](images/25MarginOfError99.png)
+![Calculated field for 99% Margin of Error](images/31MarginOfError99.png)
 
-Next, we created four fields for the upper and lower values of 95% and 99%.
+Next, we created four calculated fields for the upper and lower values of both 95% and 99% confidence intervals.
 
-![Lower 99% Value](images/26Lower99.png)
+![Lower 99% Value](images/32Lower99.png)
 
-![Upper 99% Value](images/27Upper99.png)
+![Upper 99% Value](images/33Upper99.png)
 
-![Lower 95% Value](images/28Lower95.png)
+![Lower 95% Value](images/34Lower95.png)
 
-![Upper 95% Value](images/29Upper95.png)
+![Upper 95% Value](images/35Upper95.png)
 
 Next, we create the fields that will be used to display the elements on the visualisation. The "Show" parameter created earlier is used to control which elements to show. By checking if the parameter contains the various values, we show the relevant elements as appropriate.
 
-![Lower 99% with Show check](images/30Lower99Show.png)
+![Calculated Field for Lower 99% with Show check](images/36Lower99Show.png)
 
-![Upper 99% with Show check](images/31Upper99Show.png)
+![Calculated Field for Upper 99% with Show check](images/37Upper99Show.png)
 
-![Lower 95% with Show check](images/32Lower95Show.png)
+![Calculated Field for Lower 95% with Show check](images/38Lower95Show.png)
 
-![Upper 95% with Show check](images/33Upper95Show.png)
+![Calculated Field for Upper 95% with Show check](images/39Upper95Show.png)
 
-Finally, we create "Sort Field" to control how we sort the elements on the graph.
+Finally, we create a field called "Sort Field" to control how we sort the elements on the graph. This field will use the "Sort Order" and "Sort By" parameters to decide whether to sort ascendingly or descendingly and by Country or by Value.
 
-![Sort Field](images/34SortField.png)
+![Calculated Field to Determine Sorting](images/40SortField.png)
+
+### 2.4.5 Creating Fields for Divergent Stacked Bars Visualisation of Likert Scale Data
+
+We next move on to create the fields required for the divergent stacked bars.
+
+We create a calculated field to count the positive responses. Since our survey responses is on a scale of 1 to 5, with 1 being strongly agree and 5 being strongly disagree, we count the number of 1 and 2 and half of responses of 3.
+
+![Calculated Field for Count Positive](images/41CountPositive.png)
+
+Similarly, we create a field to count the negative responses. We use -1 and -0.5 respectively for negative and neutral responses so that the bars will be towards to left of 0.
+
+![Calculated Field for Count Negative](images/42CountNegative.png)
+
+We create a field called "Positive Percentages" to get the percentages for positive responses. This uses the positive count as the numerator and the number of respondents for the denominator. We exclude "Score" from the level of detail as we need to get the total number of respondents and not just respondents for each score.
+
+![Calculated Field for Positive Percentages](images/43PositivePercentages.png)
+
+We similarly create one for the negative responses called "Negative Percentages".
+
+![Calculated Field for Negative Percentages](images/44NegativePercentages.png)
 
 ### 2.4.5 Creating Survey Results Visualisation
 
-We first add the "% Agree" field to the Columns shelf and the "Country" field to the Rows shelf.
+We first add the "% Agree" field to the Columns shelf and the "Country" field to the Rows shelf and change the mark to circle to display the % who agree as a circle on the visualisation.
 
-We change the mark to circle to display the % who agree as a circle on the visualisation.
+![Adding the fields and changing the mark](images/45Viz1Step1.png)
 
-We adjust the x-axis to be fixed from 0 to 1, with tick marks at intervals of 0.1. We also change the format for the x-axis to be in percentage with no decimal places.
+We adjust the x-axis to be fixed from 0 to 1, with tick marks at intervals of 0.1. We also change the format for the x-axis to be in percentage with no decimal places by right-clicking on the axis and formatting it.
 
-We drag "Measure Values" to the Columns shelf. We remove the irrelevant measures from the "Measure Values" shelf, leaving only the Upper/Lower 95%/99% values.
+![Changing Axis Range from 0 to 1](images/46Viz1Axis0to1.png)
 
-![Measure values](images/35MeasureValues.png)
+![Changing Axis Tick Marks to be in 0.1 intervals](images/47Viz1AxisInterval.png)
 
-We change the axes to dual axis and synchronise the axes. We change the second axis to use "line" and drag "Measure Names" to the "Path" icon.
+![Formatting the Axis](images/48Viz1AxisClickFormat.png)
 
-We click the detail icon to change it to colour, to colour the different error bars. We change the colours in the legend to light gray for 99% and dark gray for 95%. We also change the previous mark for "% Agree" to blue.
+![Changing to Percentage Format](images/49Viz1AxisFormat.png)
 
-Since we are using calculated fields to show or hide the error bars, we want to hide the indicator that shows that there are null values. We do this by going to "Analysis \> Special Values \> Hide".
+We drag "Measure Values" to the Columns shelf. We remove the irrelevant measures from the "Measure Values" shelf, leaving only the Upper/Lower 95%/99% values. We also sort them by dragging the 99% values on top.
 
-We also hide the top axis since both axes are synchronised. We do this by right-clicking on it and unticking "Show Header".
+![Default Measure Values when we drag to the Row Shelf](images/50Viz1MeasureValuesBefore.png)
 
-To show the percentage next to the name of the countries, we drag "% Agree" to the Rows shelf to the right of "Country". We change it from a continuous measure to a discrete measure. We also change the number format for "% Agree," and the other 95% and 99% values to a percentage with 0 decimal places.
+![Final Measure Values](images/51Viz1MeasureValuesFinal.png)
 
-To implement our custom sort using our two parameters, we sort "Country" in the row shelf using the following settings:
+We change the axes to dual axis and synchronise the axes by right-clicking on the second axis and selecting the appropriate option.
 
-![Settings for Sort](images/36SortCountry.png)
+![Changing to Dual Axis](images/52Viz1DualAxis.png)
 
-We add another element to show the Grand Total by going to "Analysis \> Totals \> Show Column Totals" and also "Column Totals to Top". This will show us the result for all survey respondents.
+![Synchronising the Axis](images/53Viz1SyncAxis.png)
 
-Next, we drag the "Mean" and "Total Respondents" fields to the detail icon of the "AGG(% Agree)" mark. This will allow us to use them for the title of the visualisation and the reference line. We add a reference line to show the overall mean:
+We change the "Measure Names" from detail to colour.
 
-![Reference Line for Overall Mean](images/37OverallMean.png)
+![Changing from Detail to Colour](images/54Viz1ChangeToColour.png)
 
-We add a meaningful title to the visualisation:
+We click on the "Colour" icon and change the colours of the 99% values to light grey and 95% values to a darker grey.
 
-![Visualisation Title](images/38VisualisationTitle.png)
+![Changing Colours](images/55Viz1ChangeColours.png)
 
-We create a new calculated field "Number of Respondents" to allow us to show the number of respondents for the survey. This field will take a constant value of 1, but will allow us to sum it to get the number of respondents. This field is similar added to the detail icon.
+We change the mark type to "Line" and drag "Measure Names" from the left pane to the path icon.
 
-We add meaningful tooltips for the mean and error bars:
+![Change marks to Line](images/56Viz1ChangeToLine.png)
 
-![Tooltip for % Agree](images/39TooltipForMean.png)
+We go back to the previous AGG(% Agree) mark and change its colour to blue.
 
-![Tooltip for Error Bars](images/40TooltipForErrors.png)
+![Change Mark to Blue](images/57Viz1ChangeMarkColour.png)
 
-We add animation to the analysis to allow the viewer to visualise the changes better.
+Since the mark for % Agree appears behind the error bars, we right-click on the axis and move the mark to the front.
 
-The final visualisation for the survey results is as follows:
+![Move mark to front](images/58Viz1MoveMarkToFront.png)
 
-![Visualisation for Survey Results](images/41Visualisation1.png)
+We set the number of format for "% Agree", "Upper 99%", "Lower 99%", "Upper 95%" and "Lower 95%" to percentage by holding "Ctrl" and select them before right-clicking on it on the left pane. We then set the number format to percentage with 0 decimal places.
+
+![Changing Number Format for % Agree](images/59Viz1ChangeNumberFormat.png)
+
+![Changing to Percentage with 0 decimal places](images/60Viz1ChangeNumberFormat2.png)
+
+We add "% Agree" to the rows shelf by dragging it from the left pane and change it from continuous to discrete. This allows us to display the % on the left axis.
+
+![Add % Agree to Rows](images/61Viz1AddAgreeToRows.png)
+
+![Changing % Agree from Continuous to Discrete](images/62Viz1AgreeToDiscrete.png)
+
+Since we are using calculated fields to show or hide the error bars, we want to hide the indicator that shows that there are null values when we do not show the 95 or 99% error bars. We do this by going to "Analysis \> Special Values \> Hide".
+
+![Hide Special Values](images/63Viz1HideSpecialValues.png)
+
+We also hide the top axis since both axes are synchronised. We do this by right-clicking on the top axis and unticking "Show Header".
+
+![Hide the top axis](images/64Viz1HideTopAxis.png)
+
+To implement our custom sort using our two parameters, we sort "Country" in the row shelf by right-clicking on it and choosing sort and using our "Sort Field" to sort it.
+
+![Choosing the Sort](images/65Viz1Sort.png)
+
+![Settings for Sort](images/66Viz1SortOptions.png)
+
+We add another element to show the Grand Total by going to "Analysis \> Totals \> Show Column Totals" and also "Column Totals to Top". This will show us the result for all survey respondents aggregated for all countries.
+
+![Grand Totals](images/67Viz1GrandTotals.png)
+
+Next, we drag the "Overall % Agree" field to the detail icon of the "AGG(% Agree)" mark. This will allow us to get a reference line for the overall percentage of people who agree.
+
+![Overall % Agree](images/68Viz1OverallAgree.png)
+
+We add the reference line to the axis to show the overall percentage of people who agree. We also change the number format for Overall % Agree to percentage.
+
+![Option to add reference line](images/69Viz1AddingReferenceLine.png)
+
+![Reference Line options](images/70Viz1ReferenceLineOptions.png)
+
+Next, we drag the "Total Respondents" field to the detail icon of "All" marks. This will allow us to use the total number of respondents in the title.
+
+![Add Total Respondents to Detail](images/71Viz1TotalRespondents.png)
+
+We add a meaningful title to the visualisation by right-clicking on the title and then "Edit title". The title will show the current survey question as well as the overall percent of respondents who agree and the total number of respondents.
+
+![Visualisation Title](images/72Viz1VizTitle.png)
+
+We drag the "Number of Respondents" field to the tooltip icon of the All marks. This will allow us to use the number of respondents in the tooltips of the visualisation.
+
+![Adding Number of Respondents to the tooltip](images/73Viz1NumberRespondentsTooltip.png)
+
+We add meaningful tooltips for % Agree and the Error Bars by clicking the tooltip option of the respective marks.
+
+![Tooltip for % Agree](images/74Viz1TooltipAgree.png)
+
+![Tooltip for Error Bars](images/75Viz1TooltipErrorBars.png)
+
+We scale the visualisation to "Entire View".
+
+![Scale to Entire View](images/76Viz1ScaleEntireView.png)
+
+We add animation to the visualisation by going to "Format \> Animations". We set the animation to on and the duration to 1 second.
+
+![Turning Animations On](images/77Viz1Animation.png)
+
+Finally, we get the final visualisation for survey results as follows:
+
+![Visualisation for Survey Results](images/78Viz1FinalVisualisation.png)
 
 ### 2.4.6 Creating Visualisation for further breakdown of results
 
 In order to create another visualisation to breakdown the results, we duplicate the previous worksheet to minimise the number of steps required. We rename the duplicated sheet as "Breakdown of Results".
 
-Since we want to breakdown by another field instead of country, we replace "Country" in the rows shelf with "Breakdown Field".
+![Duplicate the first visualisation](images/79Viz2Duplicate.png)
+
+Since we want to breakdown by another field instead of country, we replace "Country" in the rows shelf with "Breakdown Field" by dragging "Breakdown Field" onto "Country" in the rows shelf.
+
+![Replacing Country with Breakdown Field](images/80Viz2ChangeToBreakdown.png)
 
 We change the reference line to use the total of "% Agree".
 
-![Reference Line for Breakdown Visualisation](images/42ReferenceLineforBreakdown.png)
+![Edit Reference Line](images/81Viz2EditReferenceLine.png)
 
-Since we no longer need the total respondents for this visualisation, we remove it from the detail. Instead, we add the "Breakdown By" field.
+![Reference Line for Breakdown Visualisation](images/82Viz2ChangeReferenceLineSettings.png)
 
-We change the tooltips to dynamically display the breakdown field label:
+Since we no longer need the total respondents for this visualisation, we remove it from the detail.
 
-![Tooltip for Mean of Breakdown Visualisation](images/43TooltipForBreakdownMean.png)
+![Remove Total Respondents](images/83Viz2RemoveTotalRespondents.png)
 
-![Tooltip for Error Bars of Breakdown Visualisation](images/44TooltipForBreakdownErrors.png)
+We change the tooltips of % Agree and Error Bars to dynamically display the breakdown by field label:
+
+![Tooltip for % Agree of Breakdown Visualisation](images/84Viz2AgreeTooltip.png)
+
+![Tooltip for Error Bars of Breakdown Visualisation](images/85Viz2ErrorBarsTooltip.png)
+
+We add a new Action by going to "Worksheet \> Actions". We add a new filter action such that selecting a country on the first worksheet will drilldown the results in the second sheet.
+
+![Adding Action](images/86Viz2Action.png)
+
+![Action Settings](images/87Viz2ActionSettings.png)
+
+We change the title to let the viewer know the field we are breaking down by and the country if selected.
+
+![Visualisation Title](images/88Viz2VizTitle.png)
 
 The final visualisation for the breakdown is as follows:
 
-![Visualisation for Breakdown of Results](images/45Visualisation2.png)
+![Visualisation for Breakdown of Results](images/89Viz2FinalVisualisation.png)
 
-### 2.4.7 Combining it together into a Dashboard
+### 2.4.7 Creating Visualisation for Divergent Stacked Bars
 
-Finally, we create a Dashboard to combine both visualisation. The following steps were done to create the worksheet:
+We create a new worksheet titled "Likert Results" for the divergent stacked bars visualisation.
 
-1.  Drag both worksheets into the dashboard area.
+We first change the number format of "Negative Percentages" and "Positive Percentages" to percentage.
 
-2.  We add texts the top and bottom of the dashboard for the title and source used for the charts. We add the parameter controls to the top of the chart.
+![Change Number Format](images/90Viz3ChangeNumberFormat.png)
+
+![Change format to percentage](images/91Viz3ChangeToPercentage.png)
+
+Next, we drag "Negative Percentages" and "Positive Percentages" to the Columns shelf and "Country" to the Rows shelf.
+
+![Adding Fields to Columns and Rows](images/92Viz3AddingFields.png)
+
+We sort Country by the "Sort Field", similar to what we did for our first visualisation.
+
+![Sort Country](images/93Viz3SortCountry.png)
+
+We drag "Score" to Colour to colour the bars by their score. As "Score" is recognised as a continous measure, we need to change it to a discrete dimension instead.
+
+![Adding Score to Colour](images/94Viz3AddScoreToColour.png)
+
+![Changing Score to a Discrete Dimension](images/95Viz3ChangeScoreToDiscreteDimension.png)
+
+Next, we change the Axes to dual axis by right-clicking on the Positive Percentages axis and clicking dual axis. We further synchronise the axes to make them consistent.
+
+![Change to Dual Axis](images/96Viz3ChangeToDualAxis.png)
+
+![Synchronise Axis](images/97Viz3SyncAxis.png)
+
+Tableau has automatically added "Measure Names" to colour marks. We remove it as it is not required.
+
+![Remove Measure Names from Colour](images/98Viz3RemoveMeasureNames.png)
+
+We change the mark type from "Automatic" to "Bar" since we want to show divergent stacked bars.
+
+![Change to Bar type](images/99Viz3ChangeToBar.png)
+
+We change the colour for the bars to use contrasting colours for agree and disagree.
+
+![Change Colours](images/100Viz3ChangeColours.png)
+
+![Change Score Colours](images/101Viz3ChangeScoreColours.png)
+
+As the bars are not arranged correctly according to their scores, we have to sort the colours accordingly. We do this by right-clicking on the legend items and clicking sort. We manually arrange the colours to make sure the bars are sorted like how we want it.
+
+![Sort the Bars](images/102Viz3SortColours.png)
+
+![Sort the Score manually](images/103Viz3SortSettings.png)
+
+Since we are using dual axis, we hide the header for the top axis by right-clicking on it and unchecking "Show Header"
+
+![Hide the top axis](images/104Viz3HideHeader.png)
+
+We add the Column Totals to the top by going to the Analysis Menu and clicking the respective options.
+
+![Add Column Totals](images/105Viz3ShowColumnTotals.png)
+
+We add the title and colour coding for the viewer to easily identify what each colour means.
+
+![Visualisation Title](images/106Viz3Title.png)
+
+We change the axis title to "% of Respondents".
+
+![Change Axis Title](images/107Viz3ChangeAxisTitle.png)
+
+While divergent stacked bars are useful for comparison across countries, it might not be that intuitive to compare across the responses for each country. Hence we create another worksheet titled "Likert Tooltip" that will contain the visualisation for the tooltip to allow the viewer to compare across the responses.
+
+First, we drag Score to the Columns shelf and "Number of Respondents" to the Rows shelf.
+
+![Add Score and Number of Respondents](images/108Viz3AddFieldsForTooltip.png)
+
+Since Score is recognised as a continuous measure, we need to change it to a discrete dimension.
+
+![Change Score to Discrete Dimension](images/109Viz3ChangeScoreDiscreteDimension.png)
+
+We also want to change the number of respondents from an absolute value to a percentage of total. We can use a quick table calculation to achieve this.
+
+![Change Number of Respondents to Percent of Total](images/110Viz3RespondentsPercent.png)
+
+We want to colour the bars by the scores and so we drag "Scores" to the colours icon. Similarly, we have to change score to a discrete dimension.
+
+![Colour Bars by Score](images/111Viz3ColourByScore.png)
+
+![Change Score to Discrete Dimension](images/112Viz3ScoreDiscreteDimension.png)
+
+We want to add the % of respondents to the label of the graph. We drag "Number of Respondents" to the Label icon and use a quick table calculation to change it from an absolute value to percentage of total.
+
+![Label using Number of Respondents](images/113Viz3NumberOfRespondentsLabel.png)
+
+![Change Number of Respondents to percentage of total](images/114Viz3RespondentsPercent.png)
+
+We want to give meaningful labels to the scores. We right click on "Score" in the Columns shelf and click Edit Aliases. We give the scores meaningful labels.
+
+![Edit Score Aliases](images/115Viz3EditScoreAliases.png)
+
+![Score Aliases](images/116Viz3ScoreAliases.png)
+
+In order to put the negative bars to the left and the positive bars to the right, we sort the "Score" in the Columns shelf in a descending order.
+
+![Sort Scores](images/117Viz3SortScores.png)
+
+Since we are using this worksheet as a tooltip, we hide the y axis and the title. We further scale the graph to fit the "Entire View". The final tooltip is as follows:
+
+![Tooltip for Likert Results](images/118Viz3Tooltip.png)
+
+We add the completed worksheet to the tooltip of the previous visualisation. Note that we have to filter by "Country" so that it will show all responses for the country.
+
+![Tooltip to include the worksheet](images/119Viz3TooltipSettings.png)
+
+The final product of this visualisation is as follows:
+
+![Visualisation for Likert Survey Results](images/120Viz3FinalVisualisation.png)
+
+### 2.4.8 Combining it together into a Dashboard
+
+Finally, we create a Dashboard titled "Vaccine Survey Dashboard" to combine the visualisations. The following steps were done to create the dashboard:
+
+1.  Drag all three worksheets to the dashboard area to their respective areas and drag the controls to the bottom right.
+
+    ![Dashboard Starting Layout](images/121DBStarting.png)
+
+2.  We remove "Measure Names" and "Score" legend from the bottom right.
+
+    ![Remove Measure Names](images/122DBRemoveMeasureNames.png)
+
+    ![Remove Score from Dashboard](images/123DBRemoveScore.png)
 
 3.  We resize the areas for the various visualisation for aesthetic purposes.
 
-4.  We add an action to allow interactivity between the two visualisations. Selecting a country on the top visualisation will show the breakdown for that country only in the bottom visualisation.
+4.  We add the source and author information below.
 
-    ![Filter Action](images/46FilterAction.png)
+5.  Since the filter action was created earlier, we need to adjust it to work for the dashboard. We adjust the action based on the filters below.
+
+    ![Change the Filter Action](images/124DBFilterAction.png)
 
 The final product of the proposed visualisation in the form of a dashboard is as follows:
 
-![Final Visualisation](images/47FinalVisualisation.png)
+![Final Dashboard](images/125FinalDashboard.png)
 
 ## 2.5 Major Observations
 
@@ -340,15 +592,25 @@ Using the proposed data visualisations, we can observe the following:
 
 1.  More people would like to adopt a "wait and see" approach for getting the vaccine. Comparing the responses for the question on whether they are willing to take the vaccine this week against whether they are willing to take the vaccine a year from now, the percentage of people who agree increased for all countries except for Germany:
 
-    ![Willingness to take vaccine this week](images/48WillingThisWeek.png)
+    ![Willingness to take vaccine this week](images/126AnalyticsThisWeek.png)
 
-    ![Willingness to take one year from now](images/49WillingOneYear.png)
+    ![Willingness to take one year from now](images/127AnalyticsOneYear.png)
 
 2.  Older people were generally more willing to take the vaccine as compared to younger people. This could be due to the fact that they are less worried about potential side effects of the vaccine as compared to younger people.
 
-3.  Females were more worried about the potential side effects of a COVID-19 compared to males. This can be seen from the results where the proportion of females in all countries exceeded the proportion of males who agreed that they were worried about the potential side effects.
+    ![Older people more willing to take vaccine as compared to younger people](images/128AnalyticsAge.png)
 
-4.  The residents of Japan have less believe in their Government to provide them with an effective vaccine. This can be seen by the fact that only **47%** (2nd lowest among all countries) believe that their Government will provide them with an effective vaccine, but only **37%** (2nd lowest among all countries) of them willing to take a vaccine this week and **68%** (highest among all countries) of them worried about getting COVID-19. This has also been observed in the following article [**Survey: Japanese less trusting of government in health crisis**](http://www.asahi.com/ajw/articles/13370715), which shows that the Japanese are less trusting of government in a health crisis.
+3.  Females were more worried about the potential side effects of a COVID-19 compared to males. This can be seen from the results where the proportion of females in all countries exceeded the proportion of males who agreed that they were worried about the potential side effects. The figure below shows the overall difference.
+
+    ![Females vs Males worrying about side effects](images/129AnalyticsGender.png)
+
+4.  The residents of Japan have less believe in their Government to provide them with an effective vaccine. This can be seen by the fact that despite **68%** (highest among all countries) of them being worried about getting COVID-19, only **47%** (2nd lowest among all countries) believe that their Government will provide them with an effective vaccine and **37%** (2nd lowest among all countries) of them were willing to take a vaccine this week. This has also been observed in the following article [**Survey: Japanese less trusting of government in health crisis**](http://www.asahi.com/ajw/articles/13370715), which shows that the Japanese are less trusting of government in a health crisis.
+
+    ![68% of Japanese worried about getting COVID-19](images/130AnalyticsJapanWorriedCovid.png)
+
+    ![47% of Japanese believe their Government will be able to provide them with an effective vaccine](images/131AnalyticsJapanBelieveGovernment.png)
+
+    ![37% of Japanese were willing to take a vaccine this week](images/132AnalyticsJapanThisWeek.png)
 
 # 3. Conclusion
 
@@ -358,3 +620,4 @@ In this post, we look at how to present vaccine survey data for various countrie
 
 1.  Wexler, S. (2018, August 20). Showing uncertainty in survey results. Retrieved February 15, 2021, from <https://www.datarevelations.com/resources/showing-uncertainty/>
 2.  Wilke, C. O. (2019). 16 Visualizing uncertainty. In *Fundamentals of data visualization: A primer on making informative and compelling figures*. Retrieved February 15, 2021, from <https://clauswilke.com/dataviz/visualizing-uncertainty.html>
+3.  Wexler, S. (2018, April 1). Rethinking the divergent stacked bar chart - placing the stronger views in the center. Retrieved February 15, 2021, from <https://www.datarevelations.com/resources/rethinkingdivergent/>
