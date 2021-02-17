@@ -590,21 +590,21 @@ The final product of the proposed visualisation in the form of a dashboard is as
 
 Using the proposed data visualisations, we can observe the following:
 
-1.  More people would like to adopt a "wait and see" approach for getting the vaccine. Comparing the responses for the question on whether they are willing to take the vaccine this week against whether they are willing to take the vaccine a year from now, the percentage of people who agree increased for all countries except for Germany:
+1.  More people would like to adopt a "wait and see" approach for getting the vaccine. Comparing the responses for the question on whether they are willing to take the vaccine this week against whether they are willing to take the vaccine a year from now, the percentage of people who agree increased for all countries except for Germany. The overall percentage increased from **53.23%** of respondents who were willing to get the vaccine immediately compared to **59.92%** one year later.
 
     ![Willingness to take vaccine this week](images/126AnalyticsThisWeek.png)
 
     ![Willingness to take one year from now](images/127AnalyticsOneYear.png)
 
-2.  Older people were generally more willing to take the vaccine as compared to younger people. This could be due to the fact that they are less worried about potential side effects of the vaccine as compared to younger people.
+2.  Older people were generally more willing to take the vaccine as compared to younger people. This could be due to the fact that they are less worried about potential side effects of the vaccine as compared to younger people. We can see from the image below that about **42%** to **45%** of younger people in various age groups within the **18 to 45** range wanted to get the vaccine once it was available, compared to **51%** and **59%** for the age groups **46 to 55** and **56 to 65** respectively. Finally, people aged **66 and above** were most willing, as **74%** of that age group agreed to it.
 
     ![Older people more willing to take vaccine as compared to younger people](images/128AnalyticsAge.png)
 
-3.  Females were more worried about the potential side effects of a COVID-19 compared to males. This can be seen from the results where the proportion of females in all countries exceeded the proportion of males who agreed that they were worried about the potential side effects. The figure below shows the overall difference.
+3.  Females were more worried about the potential side effects of a COVID-19 compared to males. This can be seen from the results where the proportion of females in all countries exceeded the proportion of males who agreed that they were worried about the potential side effects. The figure below shows the overall difference, where **54%** of females were worried compared to **42%** of males.
 
     ![Females vs Males worrying about side effects](images/129AnalyticsGender.png)
 
-4.  The residents of Japan have less believe in their Government to provide them with an effective vaccine. This can be seen by the fact that despite **68%** (highest among all countries) of them being worried about getting COVID-19, only **47%** (2nd lowest among all countries) believe that their Government will provide them with an effective vaccine and **37%** (2nd lowest among all countries) of them were willing to take a vaccine this week. This has also been observed in the following article [**Survey: Japanese less trusting of government in health crisis**](http://www.asahi.com/ajw/articles/13370715), which shows that the Japanese are less trusting of government in a health crisis.
+4.  The residents of Japan have less believe in their Government to provide them with an effective vaccine. This can be seen by the fact that despite **68%** (highest among all countries) of them being worried about getting COVID-19, only **47%** (2nd lowest among all countries) believe that their Government will provide them with an effective vaccine and **37%** (2nd lowest among all countries) of them were willing to take a vaccine this week. This has also been observed in the following article **Survey: Japanese less trusting of government in health crisis**, which shows that the Japanese are less trusting of government in a health crisis.
 
     ![68% of Japanese worried about getting COVID-19](images/130AnalyticsJapanWorriedCovid.png)
 
