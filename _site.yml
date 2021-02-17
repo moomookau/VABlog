@@ -3,6 +3,7 @@ title: "Amos' Visual Analytics Blog"
 description: |
   Amos' Visual Analytics Blog
 output_dir: "_site"
+base_url: https://va.moomookau.org
 google_analytics: "G-DM4NB45LNB"
 navbar:
   right:
