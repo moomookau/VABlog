@@ -1,9 +1,15 @@
 ---
-title: "About this blog"
-description: |
-  This blog was started for my masters module on Visual Analytics, and will be updated as and when I find other interesting things to write on.
+title: "Amos Lau"
+image: "amos.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/amos-lau/"
+  - label: GitHub
+    url: "https://github.com/moomookau"
+  - label: Email
+    url: "mailto:moomookau@gmail.com"
+output:
+  postcards::jolla
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+ 
+I am currently working at the Cyber Security Agency of Singapore and purpusing my Master of IT in Business (Analytics Track) at the Singapore Management University. This blog was started for my module on Visual Analytics, and will be updated as and when I find other interesting things to write on

@@ -112,6 +112,8 @@ The proposed design improves on the original design on the following areas:
 
 > c.  Using Tableau, design the proposed data visualisation.
 
+The following is the proposed design for the data visualisation:
+
 ![Proposed Data Visualisation](images/03ProposedDashboard.png)
 
 The proposed data visualisation has been uploaded to Tableau Public and can be found [here](https://public.tableau.com/views/COVID-19VaccineSurveyResults/VaccineSurveyDashboard?:language=en&:display_count=y&publish=yes&:origin=viz_share_link).
