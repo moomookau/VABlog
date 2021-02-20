@@ -110,12 +110,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz Makeover 1"]},{"type":"character","attributes":{},"value":["This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.\n"]},{"type":"character","attributes":{},"value":["https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/amos-lau/"]}]}]},{"type":"character","attributes":{},"value":["01-22-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz Makeover 1"]},{"type":"character","attributes":{},"value":["This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.\n"]},{"type":"character","attributes":{},"value":["https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://bochup.work"]}]}]},{"type":"character","attributes":{},"value":["01-22-2021"]},{"type":"character","attributes":{},"value":["DataVizMakeover"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.6/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","images/0. Original Visualisation.png","images/0. Proposed Sketch.png","images/1. ExcelFile.png","images/10. Legend Colours.png","images/11. Compare 2009 2019.png","images/12. Breakdown of Resident Labour Force from 2009 to 2019.png","images/13. Final Dashboard-01.png","images/13. Final Dashboard.png","images/2. csv format.png","images/3. Pivot Years.png","images/4. Unpivot Data.png","images/5. Pivot RLF and ROLF.png","images/6. Output Data.png","images/7. Load Data-01.png","images/7. Load Data.png","images/8. Create Year Field.png","images/9. Create Age Group.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/header-attrs-2.6.6/header-attrs.js","dataviz-makeover-1_files/header-attrs-2.6/header-attrs.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","images/0. Original Visualisation.png","images/0. Proposed Sketch.png","images/1. ExcelFile.png","images/10. Legend Colours.png","images/11. Compare 2009 2019.png","images/12. Breakdown of Resident Labour Force from 2009 to 2019.png","images/13. Final Dashboard-01.png","images/13. Final Dashboard.png","images/2. csv format.png","images/3. Pivot Years.png","images/4. Unpivot Data.png","images/5. Pivot RLF and ROLF.png","images/6. Output Data.png","images/7. Load Data-01.png","images/7. Load Data.png","images/8. Create Year Field.png","images/9. Create Age Group.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -307,6 +307,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: underline;
   }
 
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
   @media(min-width: 768px) {
 
   d-article pre,
@@ -461,6 +466,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
   }
 
 
@@ -1128,7 +1144,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       var layout = $(this).attr('data-layout');
 
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('div.sourceCode, pre, script');
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -1243,6 +1259,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
 
       // clear polling timer
       clearInterval(tid);
@@ -1403,8 +1433,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="dataviz-makeover-1_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="dataviz-makeover-1_files/header-attrs-2.6.6/header-attrs.js"></script>
   <script src="dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="dataviz-makeover-1_files/popper-2.6.0/popper.min.js"></script>
+  <link href="dataviz-makeover-1_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1420,7 +1454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"DataViz Makeover 1","description":"This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.","authors":[{"author":"Amos Lau","authorURL":"https://www.linkedin.com/in/amos-lau/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-22T00:00:00.000+08:00","citationText":"Lau, 2021"}
+{"title":"DataViz Makeover 1","description":"This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.","authors":[{"author":"Amos Lau","authorURL":"https://bochup.work","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-22T00:00:00.000+08:00","citationText":"Lau, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1432,12 +1466,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-title">
 <h1>DataViz Makeover 1</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">DataVizMakeover</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>This post will be looking at Chart 6 Resident labour force by age in MOM’s Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.</p></p>
 </div>
 
 <div class="d-byline">
-  Amos Lau <a href="https://www.linkedin.com/in/amos-lau/" class="uri">https://www.linkedin.com/in/amos-lau/</a> 
+  Amos Lau <a href="https://bochup.work" class="uri">https://bochup.work</a> 
   
 <br/>01-22-2021
 </div>

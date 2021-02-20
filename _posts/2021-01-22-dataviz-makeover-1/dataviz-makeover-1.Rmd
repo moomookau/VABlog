@@ -7,6 +7,8 @@ author:
   - name: Amos Lau
     url: https://bochup.work
 date: 01-22-2021
+categories:
+  - DataVizMakeover
 output:
   distill::distill_article:
     self_contained: false
