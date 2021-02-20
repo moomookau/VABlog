@@ -25,4 +25,4 @@ output:
 collections:
   posts:
     disqus: amosva
-    share: [twitter, linkedin]
+    share: [linkedin, facebook, twitter]
