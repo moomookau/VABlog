@@ -15,8 +15,10 @@ navbar:
         href: /posts/2021-01-22-dataviz-makeover-1/
       - text: "Makeover 2"
         href: /posts/2021-02-05-dataviz-makeover-2/
-#    - text: "Visual Analytics Project"
-#      href: vap.html
+    - text: "Visual Analytics Project"
+      menu:
+      - text: "Proposal"
+        href: /posts/2021-02-21-visual-analytics-project-proposal/
     - text: "About"
       href: about.html
 output: 

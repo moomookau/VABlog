@@ -7,7 +7,18 @@
     <description>Amos' Visual Analytics Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 05 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Visual Analytics Project Proposal</title>
+      <dc:creator>Amos Lau</dc:creator>
+      <dc:creator>Cheryl Pay</dc:creator>
+      <dc:creator>Louis Chong</dc:creator>
+      <link>https://va.moomookau.org/posts/2021-02-21-visual-analytics-project-proposal</link>
+      <description>This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts.</description>
+      <category>Project</category>
+      <guid>https://va.moomookau.org/posts/2021-02-21-visual-analytics-project-proposal</guid>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>DataViz Makeover 2</title>
       <dc:creator>Amos Lau</dc:creator>

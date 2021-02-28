@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://va.moomookau.org/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,635 +85,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Amos' Visual Analytics Blog</title>
+  <title>Visual Analytics Project Proposal</title>
+
+  <meta property="description" itemprop="description" content="This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts."/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-02-21"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-02-21"/>
+  <meta name="article:author" content="Amos Lau"/>
+  <meta name="article:author" content="Cheryl Pay"/>
+  <meta name="article:author" content="Louis Chong"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Amos&#39; Visual Analytics Blog"/>
+  <meta property="og:title" content="Visual Analytics Project Proposal"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Amos&#39; Visual Analytics Blog"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Amos&#39; Visual Analytics Blog"/>
+  <meta property="twitter:title" content="Visual Analytics Project Proposal"/>
+  <meta property="twitter:description" content="This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Amos' Visual Analytics Blog"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Visual Analytics Project Proposal"]},{"type":"character","attributes":{},"value":["This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/amos-lau/"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Cheryl Pay"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Louis Chong"]}]}]},{"type":"character","attributes":{},"value":["02-21-2021"]},{"type":"character","attributes":{},"value":["Project"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["images/5.1 Distribution of skills.png","images/5.1 Top 10 industries by skill group.png","images/5.1 Top 10 skills by industry.png","images/5.2 Chord Diagram for visualising migration.png","images/5.2 Sankey Visualisation for Migration.png","images/5.2 Visualising Migration by Country, Industry and Skill.png","images/5.3 Employment Growth vs Industry Migration.png","images/5.4 GDP Growth vs Employment Growth.png","images/5.5 Hierarchical Clustering.png","images/projecttimeline.png","visual-analytics-project-proposal_files/anchor-4.2.2/anchor.min.js","visual-analytics-project-proposal_files/bowser-1.9.3/bowser.min.js","visual-analytics-project-proposal_files/distill-2.2.21/template.v2.js","visual-analytics-project-proposal_files/header-attrs-2.6/header-attrs.js","visual-analytics-project-proposal_files/header-attrs-2.7/header-attrs.js","visual-analytics-project-proposal_files/jquery-1.11.3/jquery.min.js","visual-analytics-project-proposal_files/popper-2.6.0/popper.min.js","visual-analytics-project-proposal_files/tippy-6.2.7/tippy-bundle.umd.min.js","visual-analytics-project-proposal_files/tippy-6.2.7/tippy-light-border.css","visual-analytics-project-proposal_files/tippy-6.2.7/tippy.css","visual-analytics-project-proposal_files/tippy-6.2.7/tippy.umd.min.js","visual-analytics-project-proposal_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2030,335 +1435,160 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="visual-analytics-project-proposal_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="visual-analytics-project-proposal_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="visual-analytics-project-proposal_files/popper-2.6.0/popper.min.js"></script>
+  <link href="visual-analytics-project-proposal_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="visual-analytics-project-proposal_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="visual-analytics-project-proposal_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="visual-analytics-project-proposal_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="visual-analytics-project-proposal_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="visual-analytics-project-proposal_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="visual-analytics-project-proposal_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <script type="text/javascript" cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-DM4NB45LNB"></script>
-  <script type="text/javascript" cookie-consent="tracking">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DM4NB45LNB');
-  </script>
-  <style type="text/css">
-  figure {
-  	text-align: center;
-  	margin-bottom: 0.5em;
-  	margin-top: 0.5em;
-  }
-
-  figure img {
-  	max-width: 100%;
-  	width: unset;
-  	border: 1px solid black;
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Amos' Visual Analytics Blog","authors":[]}
+{"title":"Visual Analytics Project Proposal","description":"This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts.","authors":[{"author":"Amos Lau","authorURL":"https://www.linkedin.com/in/amos-lau/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Cheryl Pay","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Louis Chong","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-21T00:00:00.000+08:00","citationText":"Lau, et al., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Amos' Visual Analytics Blog</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<div class="nav-dropdown">
-<button class="nav-dropbtn">
-DataViz Makeover
- 
-<span class="down-arrow">&#x25BE;</span>
-</button>
-<div class="nav-dropdown-content">
-<a href="/posts/2021-01-22-dataviz-makeover-1/">Makeover 1</a>
-<a href="/posts/2021-02-05-dataviz-makeover-2/">Makeover 2</a>
-</div>
-</div>
-<div class="nav-dropdown">
-<button class="nav-dropbtn">
-Visual Analytics Project
- 
-<span class="down-arrow">&#x25BE;</span>
-</button>
-<div class="nav-dropdown-content">
-<a href="/posts/2021-02-21-visual-analytics-project-proposal/">Proposal</a>
-</div>
-</div>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Amos&#39; Visual Analytics Blog">Amos' Visual Analytics Blog</h1>
-<a href="posts/2021-02-21-visual-analytics-project-proposal/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Project"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 21, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Amos Lau</div>
-<div class="dt-author">Cheryl Pay</div>
-<div class="dt-author">Louis Chong</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Visual Analytics Project Proposal</h2>
-<div class="dt-tags">
-<div class="dt-tag">Project</div>
-</div>
-<p>This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts.</p>
-</div>
-</a>
-<a href="posts/2021-02-05-dataviz-makeover-2/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["DataVizMakeover"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 5, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Amos Lau</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="https://va.moomookau.org/posts/2021-02-05-dataviz-makeover-2/images/03ProposedDashboard.png"/>
-</div>
-<div class="description">
-<h2>DataViz Makeover 2</h2>
-<div class="dt-tags">
-<div class="dt-tag">DataVizMakeover</div>
-</div>
-<p>This post will be looking at two data visualisations created by a research scientist of a research team conducting a study to understand the willingness of the public to take COVID-19 vaccinations.</p>
-</div>
-</a>
-<a href="posts/2021-01-22-dataviz-makeover-1/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["DataVizMakeover"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 22, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Amos Lau</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="https://va.moomookau.org/posts/2021-01-22-dataviz-makeover-1/images/13.%20Final%20Dashboard.png"/>
-</div>
-<div class="description">
-<h2>DataViz Makeover 1</h2>
-<div class="dt-tags">
-<div class="dt-tag">DataVizMakeover</div>
-</div>
-<p>This post will be looking at Chart 6 Resident labour force by age in MOM's Report: Labour Force in Singapore 2019 to see if there are possible areas of improvement and come up with a proposed visualisation to improve on those areas.</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 4, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Amos Lau</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to Amos' Visual Analytics Blog</h2>
-<div class="dt-tags"></div>
-<p>Welcome to my blog. This blog was started for my masters module on Visual Analytics, and will be updated as and when I find other interesting things to write on.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:Articles">Articles</a>
-<span class="category-count">(4)</span>
-</li>
-<li>
-<a href="#category:DataVizMakeover">DataVizMakeover</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:Project">Project</a>
-<span class="category-count">(1)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Amos’ Visual Analytics Blog</h1>
+<h1>Visual Analytics Project Proposal</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Project</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>This post contains the proposal for our Visual Analytics Project titled VISTAS - Visualising Industry Skill TAlent Shifts.</p></p>
 </div>
 
+<div class="d-byline">
+  Amos Lau <a href="https://www.linkedin.com/in/amos-lau/" class="uri">https://www.linkedin.com/in/amos-lau/</a> 
+  
+,   Cheryl Pay  
+  
+,   Louis Chong  
+  
+<br/>02-21-2021
+</div>
 
 <div class="d-article">
+<h1 id="background">1. Background</h1>
+<p>The LinkedIn and World Bank Group have partnered and released data from 2015 to 2019 that focuses on 100+ countries with at least 100,000 LinkedIn members each, distributed across 148 industries and 50,000 skill categories. This data aims to help government and researchers understand rapidly evolving labor markets with detailed and dynamic data (The World Bank Group, 2021).</p>
+<p>Simple data visualisations are also publicly available at <a href="https://linkedindata.worldbank.org/data" class="uri">https://linkedindata.worldbank.org/data</a>. However, they are limited in the exploration of trends because they only allow one parameter of choice.</p>
+<h1 id="project-motivation">2. Project Motivation</h1>
+<p>Through our project, we want to provide individuals and countries with insights into various interest areas to benchmark themselves against the global landscape. As an extension, we will be including macroeconomic indicators of GDP growth from World Bank Organization to our data visualisations. We envision our project to help answer the following questions:</p>
+<p><strong>For individuals:</strong></p>
+<ul>
+<li><p><strong>Increasing employability</strong> - What are the highly sought-after skills to build up to increase employability in a particular country or a particular sector?</p></li>
+<li><p><strong>Employment opportunities</strong> - Which country holds better employment opportunities for certain skills or certain industry?</p></li>
+<li><p><strong>Migration Trends</strong> - Which country are people e.g. fellow countrymen, migrating to?</p></li>
+</ul>
+<p><strong>For countries:</strong></p>
+<ul>
+<li><p><strong>Migration Trends</strong> - Where are our (country’s) talent migrating to?</p></li>
+<li><p><strong>Skill Trends</strong> - What are the skills lost or gained in our country or in the sectors in our country?</p></li>
+<li><p><strong>Learning from other countries</strong> - Which skills (i.e. top skill needs in each industry) do we encourage and train in our own people to increase the competitiveness of our labour market against other countries?</p></li>
+<li><p><strong>Skill and Industry Trends</strong> - Are we losing or gaining the skills or industries we desire and according to plan? How do we change this, if required? </p></li>
+</ul>
+<p>Our final deliverable is to create a user-friendly, interactive dashboard that allows individuals and countries view their competitive advantage and understand evolving labour markets across the world in four areas: skills, occupations, migration and industries. Comparison will be allowed at both the country-level and industry-level.</p>
+<h1 id="limitations-of-our-project">3. Limitations of our Project</h1>
+<p>We have identified two main limitations of our project which arise due to the LinkedIn dataset:</p>
+<ul>
+<li><p>Our data does not capture all the countries due to the penetration rate of LinkedIn; some countries do not use LinkedIn.</p></li>
+<li><p>Our data is not representative of the entire migration landscape as LinkedIn data has better coverage fo white-collar workers in knowledge-intensive sectors.</p></li>
+</ul>
+<h1 id="data-description">4. Data Description</h1>
+<p>Our proposed datasets for analyses will come mainly from the LinkedIn-World Bank partnership. We will complement it with other macroeconomic indicators such as GDP per capita from World Bank as well:</p>
+<ul>
+<li><p><a href="https://linkedindata.worldbank.org/" class="uri">https://linkedindata.worldbank.org/</a></p></li>
+<li><p><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD" class="uri">https://data.worldbank.org/indicator/NY.GDP.PCAP.CD</a></p></li>
+</ul>
+<p>The LinkedIn-World Bank dataset comprises the following:</p>
+<ul>
+<li><p><strong><em>Industry Employment Growth</em></strong>: Growth rate of employment in each industry in each country from 2015-2019</p>
+<ul>
+<li>78 distinct industries</li>
+</ul></li>
+<li><p><strong><em>Talent Migration</em></strong>: Growth in number of people with each skill in each country from 2015-2019</p></li>
+<li><p><strong><em>Industry Skills Need</em></strong>: Top 10 skills required in each industry from 2015-2019</p></li>
+<li><p><strong><em>Skills Penetration</em></strong>: Penetration of each skill in each industry from 2015-2019</p></li>
+</ul>
+<p>The <strong>GDP per capita</strong> dataset comprises annual time-series GDP per capita (current USD) for countries.</p>
+<h1 id="proposed-visualisations">5. Proposed Visualisations</h1>
+<p>The following sections list down some questions that we hope our application will be able to help answer. We propose various visualisation techniques to help the user visualise the information in a user-friendly way.</p>
+<h2 id="what-are-the-desired-skills-required-for-each-industry-in-each-year">5.1 What are the desired skills required for each industry in each year?</h2>
+<figure>
+<img src="images/5.1%20Top%2010%20skills%20by%20industry.png" alt="Top 10 Skills in Industry" /><figcaption aria-hidden="true">Top 10 Skills in Industry</figcaption>
+</figure>
+<figure>
+<img src="images/5.1%20Distribution%20of%20skills.png" alt="Distribution of Skills by Skill Categories" /><figcaption aria-hidden="true">Distribution of Skills by Skill Categories</figcaption>
+</figure>
+<figure>
+<img src="images/5.1%20Top%2010%20industries%20by%20skill%20group.png" alt="Top 10 Industries by Skill Groups" /><figcaption aria-hidden="true">Top 10 Industries by Skill Groups</figcaption>
+</figure>
+<h2 id="talent-migration-which-countries-industries-and-skills-are-gained-and-lost-from-2015-2019">5.2 Talent Migration: Which countries, industries and skills are gained and lost from 2015-2019?</h2>
+<figure>
+<img src="images/5.2%20Visualising%20Migration%20by%20Country,%20Industry%20and%20Skill.png" alt="Visualising Migration by Country, Skill and Industry" /><figcaption aria-hidden="true">Visualising Migration by Country, Skill and Industry</figcaption>
+</figure>
+<figure>
+<img src="images/5.2%20Sankey%20Visualisation%20for%20Migration.png" alt="Sankey Diagram for Visualising Migration" /><figcaption aria-hidden="true">Sankey Diagram for Visualising Migration</figcaption>
+</figure>
+<figure>
+<img src="images/5.2%20Chord%20Diagram%20for%20visualising%20migration.png" alt="Chord Diagram for Visualising Migration" /><figcaption aria-hidden="true">Chord Diagram for Visualising Migration</figcaption>
+</figure>
+<h2 id="employment-growth-vs-industry-migration-or-skill--top-10-in-industry"><strong>5.3 Employment Growth vs Industry Migration (or Skill- Top 10 in industry)</strong></h2>
+<figure>
+<img src="images/5.3%20Employment%20Growth%20vs%20Industry%20Migration.png" alt="Employment Growth vs Industry Migration" /><figcaption aria-hidden="true">Employment Growth vs Industry Migration</figcaption>
+</figure>
+<h2 id="is-there-any-correlation-between-industry-employment-growth-and-gdp-growth">5.4 Is there any correlation between industry employment growth and GDP growth?</h2>
+<figure>
+<img src="images/5.4%20GDP%20Growth%20vs%20Employment%20Growth.png" alt="GDP Growth vs Employment Growth" /><figcaption aria-hidden="true">GDP Growth vs Employment Growth</figcaption>
+</figure>
+<h2 id="which-countries-are-similar-to-each-other-in-terms-of-skills-or-growth">5.5 Which countries are similar to each other in terms of skills or growth?</h2>
+<figure>
+<img src="images/5.5%20Hierarchical%20Clustering.png" alt="Hierarchical Clustering of Countries" /><figcaption aria-hidden="true">Hierarchical Clustering of Countries</figcaption>
+</figure>
+<h1 id="project-timeline">6. Project Timeline</h1>
+<p>The following is the proposed project timeline:</p>
+<figure>
+<img src="images/projecttimeline.png" alt="Project Timeline" /><figcaption aria-hidden="true">Project Timeline</figcaption>
+</figure>
+<h1 id="software-tools-r-packages">7. Software Tools &amp; R Packages</h1>
+<p>Our project will be done as an R Shiny application using RStudio as the IDE. We envision the use of the following packages:</p>
+<ul>
+<li><p>R Shiny – For creating an interactive R Shiny web-based application</p></li>
+<li><p>Tidyverse – The tidyverse collection of apps will provide the foundational packages for our project. Some core uses of this collection will be for plotting (ggplot2), data cleaning and manipulation (dplyr, tidyr).</p></li>
+<li><p>networkD3 - For plotting sankey diagrams</p></li>
+<li><p>circlize - For plotting chord diagrams</p></li>
+</ul>
+<h1 id="github-repository">8. Github Repository</h1>
+<p>The code for our project can be found at <a href="https://github.com/moomookau/VISTAS" class="uri">https://github.com/moomookau/VISTAS</a>.</p>
+<h1 id="team-members">9. Team Members</h1>
+<ol type="1">
+<li><a href="https://va.moomookau.org">Amos Lau</a></li>
+<li><a href="https://cherylpay-isss608.netlify.app">Cheryl Pay</a></li>
+<li><a href="https://affectionate-dijkstra-f71bd4.netlify.app">Louis Chong</a></li>
+</ol>
+<h1 id="references">10. References</h1>
+<ol type="1">
+<li><p>Duca, D. (2019, July 9). Using LinkedIn for social research. Retrieved February 28, 2021, from <a href="https://blogs.lse.ac.uk/impactofsocialsciences/2019/07/09/using-linkedin-for-social-research/" class="uri">https://blogs.lse.ac.uk/impactofsocialsciences/2019/07/09/using-linkedin-for-social-research/</a></p></li>
+<li><p>World talent migration trends. (2019, August 22). Retrieved February 28, 2021, from <a href="https://www.bayut.com/mybayut/world-talent-migration-trends/" class="uri">https://www.bayut.com/mybayut/world-talent-migration-trends/</a></p></li>
+<li><p><em>People on the move: Global migration’s impact and opportunity</em> (2016, December). Retrieved February 28, 2021, from McKinsey Global Institute website: <a href="https://www.mckinsey.com/~/media/McKinsey/Industries/Public%20and%20Social%20Sector/Our%20Insights/Global%20migrations%20impact%20and%20opportunity/MGI-People-on-the-Move-Full-report.pdf" class="uri">https://www.mckinsey.com/~/media/McKinsey/Industries/Public%20and%20Social%20Sector/Our%20Insights/Global%20migrations%20impact%20and%20opportunity/MGI-People-on-the-Move-Full-report.pdf</a></p></li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
