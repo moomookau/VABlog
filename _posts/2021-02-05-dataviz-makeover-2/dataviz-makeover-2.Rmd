@@ -40,7 +40,7 @@ The tasks can be summarised as follows:
 
 ## 2.1 Critic
 
-> a.  Critic the graph from both its clarity and aesthetics. At least three from each evaluation criterion.
+> a.  Critic the data visualisation from both its clarity and aesthetics. At least three from each evaluation criterion.
 
 In terms of **clarity**, the following areas could be improved:
 
@@ -70,7 +70,7 @@ In terms of **aesthetics**, the following areas could be improved:
 
 ## 2.2 Sketch of Proposed Design
 
-> b.  With reference to the critics above, suggest alternative graphical presentation to improve the current design. The proposed alternative data visualisation must be in **static** form. Sketch out the proposed design. Support your design by describing the advantages or which part of the issue(s) your alternative design try to overcome.
+> b.  With reference to the critics above, suggest alternative graphical presentation to improve the current design. Sketch out the proposed design. The proposed alternative design should include interactive techniques. Support your design by describing the advantages or which part of the issue(s) your alternative design try to overcome.
 
 The following is a sketch of the proposed design:
 
