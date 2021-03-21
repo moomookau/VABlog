@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>DataViz Makeover 3</title>
+
+  <meta property="description" itemprop="description" content="This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-14"/>
+  <meta name="article:author" content="Amos Lau"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="DataViz Makeover 3"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="DataViz Makeover 3"/>
+  <meta property="twitter:description" content="This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz Makeover 3"]},{"type":"character","attributes":{},"value":["This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Amos Lau"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/amos-lau/"]}]}]},{"type":"character","attributes":{},"value":["03-14-2021"]},{"type":"character","attributes":{},"value":["DataVizMakeover"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["dataviz-makeover-3_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-3_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-3_files/distill-2.2.21/template.v2.js","dataviz-makeover-3_files/header-attrs-2.6/header-attrs.js","dataviz-makeover-3_files/header-attrs-2.7/header-attrs.js","dataviz-makeover-3_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-3_files/popper-2.6.0/popper.min.js","dataviz-makeover-3_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-3_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-3_files/tippy-6.2.7/tippy.css","dataviz-makeover-3_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-3_files/webcomponents-2.0.0/webcomponents.js","images/01-OriginalVisualisation.png","images/21-ClutteredPoints.png","images/21-DefaultsToMyanmarAndFixedYears.png","images/21-InconsistentAxesAndUnmeaningfulLabel.png","images/21-October.png","images/21-UnmeaningfulTooltip.png","images/22-ProposedSketch.png","images/23-ProposedDesign.png","images/242-DensityTypeParam.png","images/242-LineGraphParam.png","images/242-MapViewParam.png","images/242-PointSizeParam.png","images/242-ViewParam.png","images/243-AddDensityTitleField.png","images/243-AddFieldstoTooltip.png","images/243-AddMapViewParameter.png","images/243-ChangeDensitySettings.png","images/243-ChangeLatLonToDim.png","images/243-ChangeMarkTypeToDensity.png","images/243-ColourByDensityColour.png","images/243-Column.png","images/243-ConvertToDimension.png","images/243-CountryFilter.png","images/243-DensityColour.png","images/243-DensityPlot.png","images/243-DensityTitleField.png","images/243-DragFieldsUp.png","images/243-EventTypeFilter.png","images/243-EventTypeLabel.png","images/243-EventTypeLabelSettings.png","images/243-FilterbyCountryandEventType.png","images/243-FilterEventDate.png","images/243-HideFieldLabel.png","images/243-HideHeaders.png","images/243-HideTitle.png","images/243-MapDisplayField.png","images/243-MapDisplaySettings.png","images/243-Row.png","images/243-ShowDensityFieldParameter.png","images/243-Tooltips.png","images/244-BreakdownColour.png","images/244-BreakdownField.png","images/244-ChangeMarkToCircle.png","images/244-EventIdDetail.png","images/244-FatalitiesSizeField.png","images/244-FatalitiesSizeIcon.png","images/244-PointPlot.png","images/244-PointTitleField.png","images/244-ReplaceTitle.png","images/244-Tooltip.png","images/245-AddFieldstoColumns.png","images/245-AddFieldstoRows.png","images/245-AddFieldsToShelves.png","images/245-AddLabel.png","images/245-AddTooltip.png","images/245-BreakdownCountry.png","images/245-BreakdownSubEvent.png","images/245-ChangeEventDatetoContinuous.png","images/245-ColourbyBreakdown.png","images/245-ColourByBreakdownCountrySubType.png","images/245-FatalitiesPerEvent.png","images/245-NumberOfEvents.png","images/245-RemoveAxisHeader.png","images/245-RemoveMeasureValues.png","images/246-AddDensity.png","images/246-AddLineGraphs.png","images/246-AddPointPlot.png","images/246-AddTitleNotesSource.png","images/246-AddVerticalContainer.png","images/246-EnsuringFiltersApplyThroughout.png","images/246-FinalDashboard.png","images/246-HideTitle.png","images/246-SelectionFilter.png","images/25-DeadlyEvents.png","images/25-DeadlySubEvents.png","images/25-DeadlySubEvents2.png","images/25-EventLocations.png","images/25-PeakYear.png","images/25-Philippines2016.png","images/25-ProtestsIncreasing.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="dataviz-makeover-3_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="dataviz-makeover-3_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="dataviz-makeover-3_files/popper-2.6.0/popper.min.js"></script>
+  <link href="dataviz-makeover-3_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="dataviz-makeover-3_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="dataviz-makeover-3_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="dataviz-makeover-3_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="dataviz-makeover-3_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="dataviz-makeover-3_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="dataviz-makeover-3_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"DataViz Makeover 3","description":"This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement.","authors":[{"author":"Amos Lau","authorURL":"https://www.linkedin.com/in/amos-lau/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-14T00:00:00.000+08:00","citationText":"Lau, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>DataViz Makeover 3</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">DataVizMakeover</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement.</p></p>
+</div>
+
+<div class="d-byline">
+  Amos Lau <a href="https://www.linkedin.com/in/amos-lau/" class="uri">https://www.linkedin.com/in/amos-lau/</a> 
+  
+<br/>03-14-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#task">2. Task</a>
+<ul>
+<li><a href="#critic">2.1 Critic</a></li>
+<li><a href="#sketch-of-proposed-design">2.2 Sketch of Proposed Design</a></li>
+<li><a href="#proposed-data-visualisation">2.3 Proposed Data Visualisation</a></li>
+<li><a href="#step-by-step-description">2.4 Step-by-step Description</a>
+<ul>
+<li><a href="#data-loading">2.4.1 Data Loading</a></li>
+<li><a href="#creating-parameters">2.4.2 Creating Parameters</a></li>
+<li><a href="#creating-density-map">2.4.3 Creating Density Map</a></li>
+<li><a href="#creating-point-plot-map">2.4.4 Creating Point Plot Map</a></li>
+<li><a href="#creating-the-line-graphs">2.4.5 Creating the Line Graphs</a></li>
+<li><a href="#putting-it-all-together-into-a-dashboard">2.4.6 Putting it all together into a dashboard</a></li>
+</ul></li>
+<li><a href="#major-observations">2.5 Major Observations</a></li>
+</ul></li>
+<li><a href="#conclusion">3. Conclusion</a></li>
+</ul>
+</nav>
+</div>
+<h1 id="introduction">1. Introduction</h1>
+<p>This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement. A screenshot of the original visualisation is shown below. The original visualisation can be found at <a href="https://public.tableau.com/profile/tskam#!/vizhome/South-eastAsiaArmedConflictAnalysis/South-eastAsiaArmedConflictAnalysis" class="uri">here</a>. The data was sourced from the <a href="https://acleddata.com/">The Armed Conflict Location &amp; Event Data Project</a> and the data used was the data set from January 2015 to October 2020 for South East Asia.</p>
+<figure>
+<img src="images/01-OriginalVisualisation.png" alt="Original Visualisation" /><figcaption aria-hidden="true">Original Visualisation</figcaption>
+</figure>
+<p>We will also come up with a proposed design and implement it in tableau. Next, a step-by-step guide will be provided for coming up with the proposed design. Finally, we will list down major observations that we are able to derive from the proposed design.</p>
+<h1 id="task">2. Task</h1>
+<p>The tasks can be summarised as follows:</p>
+<ol type="1">
+<li>Critic the existing visualisation</li>
+<li>Sketch a proposed design</li>
+<li>Implement the proposed design</li>
+<li>Provide steps for replication of the proposed design</li>
+<li>Major observations derived from the proposed design</li>
+</ol>
+<h2 id="critic">2.1 Critic</h2>
+<blockquote>
+<ol type="a">
+<li>Critic the interactive data visualisation from its clarity, aesthetics and interactivity. At least two from each evaluation criterion.</li>
+</ol>
+</blockquote>
+<p>In terms of <strong>clarity</strong>, the following areas could be improved:</p>
+<ol type="1">
+<li><p>There is no lead in paragraph for the visualisations, making it hard to determine what message is being conveyed to the viewer.</p></li>
+<li><p>The visualisation of the map on the left does not really allow for spatiotemporal visualisation. The map comprises of all events across the years 2015 to 2020, and does not allow the user to visualise over the temporal plane. Further, the graphs on the rights show the breakdown of the events by year, but there is no easy way for the user to visualise that on the map, leading to a disjoint.</p></li>
+<li><p>The title of the visualisation states that the visualisation was from 2015-2020. The axis labels of the graphs on the right similarly shows that the data is from 2015 to 2020. However, upon further examination of the visualisation by expanding the date axis from yearly to monthly, we can see that the data is only up till October 2020, rather than till the end of 2020. This may not be clear to the viewers who would expect that every year represents the full 12 months. It also makes it difficult to make comparisons between the difference years.</p>
+<figure>
+<img src="images/21-October.png" alt="The data is only up to October 2020" /><figcaption aria-hidden="true">The data is only up to October 2020</figcaption>
+</figure></li>
+<li><p>The line graphs on the right are difficult to compare because they are on separate graphs. Further, the axes for the different events were of different scale and range, further exacerbating the problem of comparing across different event types.</p>
+<figure>
+<img src="images/21-InconsistentAxesAndUnmeaningfulLabel.png" alt="Inconsistent Axes" /><figcaption aria-hidden="true">Inconsistent Axes</figcaption>
+</figure></li>
+<li><p>The point marks on the map are difficult to visualise due to cluttering once there are too many points in the same area.</p>
+<figure>
+<img src="images/21-ClutteredPoints.png" alt="Cluttered Points" /><figcaption aria-hidden="true">Cluttered Points</figcaption>
+</figure></li>
+<li><p>The colour of the line graphs on the right are not consistent with the legend; the legends uses different colours for different event types, but the line graphs are all of the same colour.</p></li>
+<li><p>The source of the data was not provided and therefore the viewer may not know where the data was sourced from.</p></li>
+</ol>
+<p>In terms of <strong>aesthetics</strong>, the following areas could be improved:</p>
+<ol type="1">
+<li><p>The axis label of the graphs on the right could be improved. It is written as “Count of Sheet1”, but the user does not know what “Sheet1” refers to.</p></li>
+<li><p>The axis label of the graphs on the right is vertically aligned and is difficult to read.</p></li>
+</ol>
+<p>In terms of <strong>interactivity</strong>, the following areas could be improved:</p>
+<ol type="1">
+<li><p>The visualisation loads with only Myanmar selected. It would make more sense if the visualisation defaulted to “All” countries, and thereafter allow the user to select by country if desired.</p></li>
+<li><p>The interactivity of the visualisation could be improved by allowing users to select the year to display, rather than displaying all the events from 2015 to 2020.</p>
+<figure>
+<img src="images/21-DefaultsToMyanmarAndFixedYears.png" alt="The visualisation defaults to Myanmar and the dates are fixed from 2015 to 2020" /><figcaption aria-hidden="true">The visualisation defaults to Myanmar and the dates are fixed from 2015 to 2020</figcaption>
+</figure></li>
+<li><p>The tooltips of the points on the map does not provide additional meaningful information. It shows the event ID which is difficult to decipher, the event type which can be inferred from the colour of the point, and the latitude and longitude which can similarly be inferred from where the point is.</p>
+<figure>
+<img src="images/21-UnmeaningfulTooltip.png" alt="Information provided by tooltip not meaningful" /><figcaption aria-hidden="true">Information provided by tooltip not meaningful</figcaption>
+</figure></li>
+<li><p>There is no interactivity between the map visualisation on the left and the line graphs on the right. It could be improved by allowing users to select subsets on the line graph to display where these events took place on the map on the left.</p></li>
+</ol>
+<h2 id="sketch-of-proposed-design">2.2 Sketch of Proposed Design</h2>
+<blockquote>
+<ol start="2" type="a">
+<li>With reference to the critics above, suggest alternative data visualisation and interactive techniques to improve the current design. Support your design by describing the advantages or which part of the issue(s) your alternative design try to overcome.</li>
+</ol>
+</blockquote>
+<p>The following is a sketch of the proposed design:</p>
+<figure>
+<img src="images/22-ProposedSketch.png" alt="Sketch of Proposed Design" /><figcaption aria-hidden="true">Sketch of Proposed Design</figcaption>
+</figure>
+<p>The proposed design comprises of a map visualisation on the left and line graphs on the right. To the right there will be filters for the user to filter the views by as well as the legends.</p>
+<p>The map visualisation on the left includes a dropdown selection at the top which will allow users to toggle between an <strong>all</strong> view, a <strong>density</strong> view and a <strong>point plot</strong> view. The density view shows the density of the number of events on the map broken down by the different event types in a trellis view. Similarly, the point plot view will show individual events on the plot broken down by the different event types in a trellis view. Further, the points are sized by the number of fatalities. The all view will show both the density view and point plot view. The arrangement of the maps in a 3 x 2 trellis allows for easier comparison across the different events. When the user hovers over a point on the map, a tooltip will display which will show further information of the individual events.</p>
+<p>The line graphs on the right shows the <strong>number of events</strong>, <strong>number of fatalities</strong>, and <strong>number of fatalities per event</strong> broken down by the various event types and across the different years. The lines are also coloured by the different countries to allow users to compare across the different countries.</p>
+<p>The filters on the right allows the user to filter the data across different columns like country. Further, actions between the various visualisations allow the user to select items on one graph that will change the view for the other graphs.</p>
+<h2 id="proposed-data-visualisation">2.3 Proposed Data Visualisation</h2>
+<blockquote>
+<ol start="3" type="a">
+<li>Using Tableau, design the proposed data visualisation.</li>
+</ol>
+</blockquote>
+<p>The following is the proposed design for the data visualisation:</p>
+<figure>
+<img src="images/23-ProposedDesign.png" alt="Proposed Data Visualisation" /><figcaption aria-hidden="true">Proposed Data Visualisation</figcaption>
+</figure>
+<p>The proposed data visualisation has been uploaded to Tableau Public and can be found <a href="https://public.tableau.com/views/COVID-19VaccineSurveyResults/VaccineSurveyDashboard?:language=en&amp;:display_count=y&amp;publish=yes&amp;:origin=viz_share_link">here</a>.</p>
+<p>The proposed design improves on the original visualisation in the following ways:</p>
+<ul>
+<li><p>There is a density plot to aggregate events to allow users to visualise where there are more events or fatalities. This improves on the original plot which had cluttered points that overlapped each other.</p></li>
+<li><p>There are filters for the user, allowing them to filter the view by event type, country and date. These filters are also applied consistently across all visualisations.</p></li>
+<li><p>The trellis view allows the user to view the different event types on different maps, rather than cluttering everything into one map.</p></li>
+<li><p>There are controls for the user to fine tune how they view the visualisation.</p></li>
+<li><p>The tooltips for the visualisations are more informative.</p></li>
+</ul>
+<h2 id="step-by-step-description">2.4 Step-by-step Description</h2>
+<blockquote>
+<ol start="4" type="a">
+<li>Provide step-by-step description on how the data visualisation was prepared.</li>
+</ol>
+</blockquote>
+<p>The following sections describe how the data visualisation was prepared.</p>
+<h3 id="data-loading">2.4.1 Data Loading</h3>
+<p>The data used for the visualisations was gotten from the <a href="https://acleddata.com/" title="The Armed Conflict Location &amp; Event Data Project">The Armed Conflict Location &amp; Event Data Project</a>. We used the dataset for South East Asia with events from Jan 2010 to Oct 2020.</p>
+<p>First, we load the dataset in Excel format into Tableau by dragging it into Tableau. The important columns we need have been recognised as the correct data type. For example, Event Date is recognised as a date time column, Country is recognised with the geographic role of country, and Latitude and Longitude have been recognised correctly as well. Although Admin1, Admin2 and Admin3 are columns with location information, they have been recognised as string. However, we do not change their roles as they will not be used for this visualisation.</p>
+<h3 id="creating-parameters">2.4.2 Creating Parameters</h3>
+<p>In this section, we detail the steps to create parameters that will be used to allow interactivity for our visualisation.</p>
+<p>We first create a “Map View” parameter that will be used to control which map to show on the map view. The data type is changed to String and allowable values is changed to List. We allow the values All, Density and Point for the various views.</p>
+<figure>
+<img src="images/242-MapViewParam.png" alt="Map View Parameter" /><figcaption aria-hidden="true">Map View Parameter</figcaption>
+</figure>
+<p>Next, we a create a View Parameter. This parameter will be used to control whether to show the map, the graph, or both. The settings for this parameter is as follows:</p>
+<figure>
+<img src="images/242-ViewParam.png" alt="View Parameter" /><figcaption aria-hidden="true">View Parameter</figcaption>
+</figure>
+<p>Next, we create a “Density Field” parameter that will be used to control how density on the map is displayed, either by the number of events or the number of fatalities.</p>
+<figure>
+<img src="images/242-DensityTypeParam.png" alt="Density Field Parameter" /><figcaption aria-hidden="true">Density Field Parameter</figcaption>
+</figure>
+<p>Next, we create a parameter "Point Size (Fatalities) to allow the user to control the size of the points on the plot. The points will be sized by the number of fatalities for that event and will default to 1X size. However, the user can choose to change the size to 0.5x or 2x, or to not size it by fatalities at all. A new float parameter will be created as follows:</p>
+<figure>
+<img src="images/242-PointSizeParam.png" alt="Point Size Parameter to control the size of points" /><figcaption aria-hidden="true">Point Size Parameter to control the size of points</figcaption>
+</figure>
+<p>Last, we create a parameter to control how to breakdown the line graphs. This parameter will allow the user to breakdown by Country (default), Sub Event Type, or not break down at all. The following settings are used for this parameter:</p>
+<figure>
+<img src="images/242-LineGraphParam.png" alt="Line Graph Breakdown Parameter" /><figcaption aria-hidden="true">Line Graph Breakdown Parameter</figcaption>
+</figure>
+<h3 id="creating-density-map">2.4.3 Creating Density Map</h3>
+<p>We rename the default created <strong>Sheet1</strong> to <strong>Map-Density</strong>. This sheet will be used to create the density view of the map.</p>
+<p>In order to get the trellis view for the density plots, we create two calculated fields for Column and Row to get the column and row values based on the event types. For example, the first event type will be Column 0 Row 0, and the second event type will be Column 1 Row 0, and so on so fort. The formula for the calculated fields are as follows:</p>
+<figure>
+<img src="images/243-Column.png" alt="Calculated Field for Column" /><figcaption aria-hidden="true">Calculated Field for Column</figcaption>
+</figure>
+<figure>
+<img src="images/243-Row.png" alt="Calculated Field for Row" /><figcaption aria-hidden="true">Calculated Field for Row</figcaption>
+</figure>
+<p>Both the Row and Column fields are changed to dimensions by right-clicking on it and converting it to a dimension:</p>
+<figure>
+<img src="images/243-ConvertToDimension.png" alt="Convert Row and Column fields to dimensions" /><figcaption aria-hidden="true">Convert Row and Column fields to dimensions</figcaption>
+</figure>
+<p>Next, we create a DensityColour field that controls how the density plot is coloured by, i.e. by the number of events or the number of fatalities. The following is the formula for this field:</p>
+<figure>
+<img src="images/243-DensityColour.png" alt="Calculated Field to control Density Plot Colour" /><figcaption aria-hidden="true">Calculated Field to control Density Plot Colour</figcaption>
+</figure>
+<p>Next, we add the fields to the column and row shelves by dragging them from the left pane. We add the Column and Longitude fields to the column shelf and the Row and Latitude fields to the row shelf:</p>
+<figure>
+<img src="images/243-DragFieldsUp.png" alt="Adding Fields to the Column and Row shelves" /><figcaption aria-hidden="true">Adding Fields to the Column and Row shelves</figcaption>
+</figure>
+<p>As we want the longitude and latitude to be counted as individual data points rather than aggregated to an average, we change them to dimensions instead:</p>
+<figure>
+<img src="images/243-ChangeLatLonToDim.png" alt="Change Longitude and Latitude to Dimensions" /><figcaption aria-hidden="true">Change Longitude and Latitude to Dimensions</figcaption>
+</figure>
+<p>Next, we change the mark type to density to get a density plot on the map:</p>
+<figure>
+<img src="images/243-ChangeMarkTypeToDensity.png" alt="Change Mark Type to Density" /><figcaption aria-hidden="true">Change Mark Type to Density</figcaption>
+</figure>
+<p>Next, we change the settings for the colour scheme of density, increase the intensity, and decrease the opacity:</p>
+<figure>
+<img src="images/243-ChangeDensitySettings.png" alt="Change Density Colour Settings" /><figcaption aria-hidden="true">Change Density Colour Settings</figcaption>
+</figure>
+<p>As we do not need the column and row axis labels, we hide them by right-clicking on the values and unticking “Show Header”:</p>
+<figure>
+<img src="images/243-HideHeaders.png" alt="Hiding Axis Labels" /><figcaption aria-hidden="true">Hiding Axis Labels</figcaption>
+</figure>
+<p>Next, we add our previously created DensityColour field to the colour icon of the marks. This will allow us to control how the density is coloured through the parameter we created earlier:</p>
+<figure>
+<img src="images/243-ColourByDensityColour.png" alt="Colour by DensityColour field" /><figcaption aria-hidden="true">Colour by DensityColour field</figcaption>
+</figure>
+<p>We add the Density Field parameter to the right of our visualisation to ensure we can control how the density of the plot is calculated. Toggling between both settings will change how the density is visualised on the map.</p>
+<figure>
+<img src="images/243-ShowDensityFieldParameter.png" alt="Show Density Field Parameter" /><figcaption aria-hidden="true">Show Density Field Parameter</figcaption>
+</figure>
+<p>Next, we want to add a filter for Event Date to allow users to choose the date range they would like to visualise. We drag Event Date to the Filters shelf and use Range of Dates with the default settings for the user to filter by. We also right click on the Event Date filter in the filters shelf to “Show Filter” so that it is added to the right of the visualisation.</p>
+<figure>
+<img src="images/243-FilterEventDate.png" alt="Filter by Event Date" /><figcaption aria-hidden="true">Filter by Event Date</figcaption>
+</figure>
+<p>Next, we add the filters for Country and Event Type by right-clicking on the field on the left pane and clicking show filter. We change the filter type of Country to Multiple Values (dropdown) and Event Type to Single Values (dropdown).</p>
+<figure>
+<img src="images/243-FilterbyCountryandEventType.png" alt="Show Filter for Country and Event Type" /><figcaption aria-hidden="true">Show Filter for Country and Event Type</figcaption>
+</figure>
+<figure>
+<img src="images/243-CountryFilter.png" alt="Setting the Country Filter" /><figcaption aria-hidden="true">Setting the Country Filter</figcaption>
+</figure>
+<figure>
+<img src="images/243-EventTypeFilter.png" alt="Setting the Event Type Filter" /><figcaption aria-hidden="true">Setting the Event Type Filter</figcaption>
+</figure>
+<p>Next, we want to add the label for the event type to the individual maps to allow the user to know which event type each map represented. This proved more challenging due to some limitations of Tableau and the way we set up the Trellis Map. In the end, we used the label mark function to achieve it somewhat. We first drag the Event Type to the Label icon.</p>
+<figure>
+<img src="images/243-EventTypeLabel.png" alt="Drag Event Type to Label Icon" /><figcaption aria-hidden="true">Drag Event Type to Label Icon</figcaption>
+</figure>
+<p>Next, we change the label settings by clicking on the label icon. The following settings were used:</p>
+<figure>
+<img src="images/243-EventTypeLabelSettings.png" alt="Settings for Label" /><figcaption aria-hidden="true">Settings for Label</figcaption>
+</figure>
+<p>Next, we want to add the parameter that controls which map to show. Even though we have not done up the other map, we can still test it for the current worksheet to ensure it works. First, we right-click the “Map View” parameter and click on “Show Parameter” to add it to the right of the visualisation:</p>
+<figure>
+<img src="images/243-AddMapViewParameter.png" alt="Adding Map View Parameter" /><figcaption aria-hidden="true">Adding Map View Parameter</figcaption>
+</figure>
+<p>Changing the selection on the dropdown list does not change anything at the moment. Therefore, we need to set up a filter to ensure the sheet is shown or hidden correctly. We first create a new calculated field called “Map Display”. This calculated field is required as we are not able to filter by parameters. Therefore, the calculated field will just take the value of the “Map View” parameter:</p>
+<figure>
+<img src="images/243-MapDisplayField.png" alt="Calculated Field for Map Display" /><figcaption aria-hidden="true">Calculated Field for Map Display</figcaption>
+</figure>
+<p>We then drag this new field to the Filters shelf. We want this sheet to be shown when map view is set to either “All” or “Density”. As such, our settings for the filter will be as follows:</p>
+<figure>
+<img src="images/243-MapDisplaySettings.png" alt="Filter Settings for Map Display" /><figcaption aria-hidden="true">Filter Settings for Map Display</figcaption>
+</figure>
+<p>Toggling between the settings will show or hide the map accordingly. However, the title will of the sheet will remain there throughout. As such, we need to use a small hack to show the “title” together with the map. First, we hide the current worksheet title by right-clicking on it and clicking “Hide Title”:</p>
+<figure>
+<img src="images/243-HideTitle.png" alt="Hide title" /><figcaption aria-hidden="true">Hide title</figcaption>
+</figure>
+<p>To add the title, we created a new calculated field called “Density Title” with the following formula:</p>
+<figure>
+<img src="images/243-DensityTitleField.png" alt="Density Title Field" /><figcaption aria-hidden="true">Density Title Field</figcaption>
+</figure>
+<p>We drag this new field to the Columns shelf:</p>
+<figure>
+<img src="images/243-AddDensityTitleField.png" alt="Add Density Title Field to Column" /><figcaption aria-hidden="true">Add Density Title Field to Column</figcaption>
+</figure>
+<p>The new “title” is now shown at the top of the map. We right-click on the field label at the top to hide it so that only the “title” is shown:</p>
+<figure>
+<img src="images/243-HideFieldLabel.png" alt="Hide Field Label" /><figcaption aria-hidden="true">Hide Field Label</figcaption>
+</figure>
+<p>Next, we add fields that will be used for our tooltip by dragging them over to the tooltip icon. We add the count, fatalities, event type, sub event type, country fields to the tooltip. We then use the fields in the tooltip:</p>
+<figure>
+<img src="images/243-AddFieldstoTooltip.png" alt="Adding fields to tooltip" /><figcaption aria-hidden="true">Adding fields to tooltip</figcaption>
+</figure>
+<figure>
+<img src="images/243-Tooltips.png" alt="Setting the tooltip" /><figcaption aria-hidden="true">Setting the tooltip</figcaption>
+</figure>
+<p>Our final visualisation for this plot is as follows:</p>
+<figure>
+<img src="images/243-DensityPlot.png" alt="Density Plot" /><figcaption aria-hidden="true">Density Plot</figcaption>
+</figure>
+<h3 id="creating-point-plot-map">2.4.4 Creating Point Plot Map</h3>
+<p>In order to create the point plot map, we duplicate the Map-Density sheet and rename it as Map-Points. We first change the mark type from Density to Circle:</p>
+<figure>
+<img src="images/244-ChangeMarkToCircle.png" alt="Change Mark to Circle" /><figcaption aria-hidden="true">Change Mark to Circle</figcaption>
+</figure>
+<p>We want to show every individual event as a circle on the map. Hence, we drag “Event Id Cnty” to the detail icon:</p>
+<figure>
+<img src="images/244-EventIdDetail.png" alt="Event Id Cnty field to Detail Icon" /><figcaption aria-hidden="true">Event Id Cnty field to Detail Icon</figcaption>
+</figure>
+<p>After adding Event Id Cnty to detail, our trellis consisted of one map per event. This was due to how the density title computed the min and max date. We created a new Point Title field and replaced the title with this newly created field.</p>
+<figure>
+<img src="images/244-PointTitleField.png" alt="New Field for Point Title" /><figcaption aria-hidden="true">New Field for Point Title</figcaption>
+</figure>
+<figure>
+<img src="images/244-ReplaceTitle.png" alt="Replace the existing title with the new field" /><figcaption aria-hidden="true">Replace the existing title with the new field</figcaption>
+</figure>
+<p>We want to shape the circles by the number of fatalities. We had previously created a parameter to control the size of the circles. We create a new calculated field which uses the sum of fatalities multiplied by the value of the parameter:</p>
+<figure>
+<img src="images/244-FatalitiesSizeField.png" alt="Calculated Field for Fatalities Size" /><figcaption aria-hidden="true">Calculated Field for Fatalities Size</figcaption>
+</figure>
+<p>This field was then dragged to the size icon to determine the size of each circle:</p>
+<figure>
+<img src="images/244-FatalitiesSizeIcon.png" alt="Sizing by the Fatalities Size field" /><figcaption aria-hidden="true">Sizing by the Fatalities Size field</figcaption>
+</figure>
+<p>Next, we want to colour the circles based on how we will colour the line graphs later. This is determined by the line graph breakdown parameter. We create a new calculated field for this:</p>
+<figure>
+<img src="images/244-BreakdownField.png" alt="Breakdown Field" /><figcaption aria-hidden="true">Breakdown Field</figcaption>
+</figure>
+<p>We drag this new field to replace Density Colour on the marks shelf:</p>
+<figure>
+<img src="images/244-BreakdownColour.png" alt="Colour by Breakdown Field" /><figcaption aria-hidden="true">Colour by Breakdown Field</figcaption>
+</figure>
+<p>We add the Notes field to the tooltip icon and change the tooltip to as follows:</p>
+<figure>
+<img src="images/244-Tooltip.png" alt="Tooltip for visualisation" /><figcaption aria-hidden="true">Tooltip for visualisation</figcaption>
+</figure>
+<p>The final visualisation for this sheet is as follows:</p>
+<figure>
+<img src="images/244-PointPlot.png" alt="Final Point Plot" /><figcaption aria-hidden="true">Final Point Plot</figcaption>
+</figure>
+<h3 id="creating-the-line-graphs">2.4.5 Creating the Line Graphs</h3>
+<p>Next, we create a new sheet called LineGraphs to contain the line graphs. First, we create calculated fields for the number of events and the fatalities per event:</p>
+<figure>
+<img src="images/245-NumberOfEvents.png" alt="Number of Events field" /><figcaption aria-hidden="true">Number of Events field</figcaption>
+</figure>
+<figure>
+<img src="images/245-FatalitiesPerEvent.png" alt="Fatalities Per Event field" /><figcaption aria-hidden="true">Fatalities Per Event field</figcaption>
+</figure>
+<p>We drag the number of events, fatalities, and fatalities per event fields to the Rows shelf, and the Event Type and Event Date to the Columns shelf:</p>
+<figure>
+<img src="images/245-AddFieldstoRows.png" alt="Add fields to Rows shelf" /><figcaption aria-hidden="true">Add fields to Rows shelf</figcaption>
+</figure>
+<figure>
+<img src="images/245-AddFieldstoColumns.png" alt="Add fields to Columns shelf" /><figcaption aria-hidden="true">Add fields to Columns shelf</figcaption>
+</figure>
+<p>We change the Event Date type from discrete to continuous:</p>
+<figure>
+<img src="images/245-ChangeEventDatetoContinuous.png" alt="Change Event Date type to continuous" /><figcaption aria-hidden="true">Change Event Date type to continuous</figcaption>
+</figure>
+<p>Similar to our point plot, we want to breakdown the graph and colour it by our breakdown field. We do this by dragging the breakdown field to the colour icon:</p>
+<figure>
+<img src="images/245-ColourbyBreakdown.png" alt="Colour by Breakdown Field" /><figcaption aria-hidden="true">Colour by Breakdown Field</figcaption>
+</figure>
+<p>In order to create dynamic tooltips, we create a new sheet called “Line-Tooltip” to create a tooltip visualisation. We create two new calculated fields to determine the breakdown for country and breakdown for sub event type. These calculated fields will be used opposite to the breakdown type the user has selected. For example, if the user has selected to breakdown by country, the breakdown-country field will be empty:</p>
+<figure>
+<img src="images/245-BreakdownCountry.png" alt="Breakdown Country Field" /><figcaption aria-hidden="true">Breakdown Country Field</figcaption>
+</figure>
+<figure>
+<img src="images/245-BreakdownSubEvent.png" alt="Breakdown Sub Event" /><figcaption aria-hidden="true">Breakdown Sub Event</figcaption>
+</figure>
+<p>We add the “Measure Names” and “Measure Values” fields to the Columns shelf and the “Breakdown Country” and “Breakdown SubEvent” fields to the Rows shelf:</p>
+<figure>
+<img src="images/245-AddFieldsToShelves.png" alt="Add the fields to the columns and rows shelves" /><figcaption aria-hidden="true">Add the fields to the columns and rows shelves</figcaption>
+</figure>
+<p>As we only need the Number of Events, Fatalities and Fatalities Per Event, we drag the rest of the measure values and drop it outside to remove them, retaining only those we need:</p>
+<figure>
+<img src="images/245-RemoveMeasureValues.png" alt="Remove unneeded measure values and retain those highlighted" /><figcaption aria-hidden="true">Remove unneeded measure values and retain those highlighted</figcaption>
+</figure>
+<p>Next, we colour the graphs by the breakdown-country and breakdown-subevent fields:</p>
+<figure>
+<img src="images/245-ColourByBreakdownCountrySubType.png" alt="Colour by Breakdown-Country and Breakdown-Subevent" /><figcaption aria-hidden="true">Colour by Breakdown-Country and Breakdown-Subevent</figcaption>
+</figure>
+<p>We add the measure values to the labels:</p>
+<figure>
+<img src="images/245-AddLabel.png" alt="Add measure values to label" /><figcaption aria-hidden="true">Add measure values to label</figcaption>
+</figure>
+<p>We remove the axis header as it is no longer needed by right-clicking on it and unticking “Show Header”:</p>
+<figure>
+<img src="images/245-RemoveAxisHeader.png" alt="Remove Axis Header" /><figcaption aria-hidden="true">Remove Axis Header</figcaption>
+</figure>
+<p>Next, we go back to the LineGraphs sheet to and change the tooltip to as follows to include the new sheet we just setup:</p>
+<figure>
+<img src="images/245-AddTooltip.png" alt="Add tooltip to visualisation" /><figcaption aria-hidden="true">Add tooltip to visualisation</figcaption>
+</figure>
+<h3 id="putting-it-all-together-into-a-dashboard">2.4.6 Putting it all together into a dashboard</h3>
+<p>Next, we create a new dashboard called “Dashboard”. We first add the LineGraphs sheet to the dashboard:</p>
+<figure>
+<img src="images/246-AddLineGraphs.png" alt="Add Line Graphs" /><figcaption aria-hidden="true">Add Line Graphs</figcaption>
+</figure>
+<p>Next, we add a vertical container to the left of the line graphs:</p>
+<figure>
+<img src="images/246-AddVerticalContainer.png" alt="Add Vertical Container" /><figcaption aria-hidden="true">Add Vertical Container</figcaption>
+</figure>
+<p>We add the density map to the newly created vertical container:</p>
+<figure>
+<img src="images/246-AddDensity.png" alt="Add Density Map" /><figcaption aria-hidden="true">Add Density Map</figcaption>
+</figure>
+<p>Next, we add the point plot below the density map:</p>
+<figure>
+<img src="images/246-AddPointPlot.png" alt="Add Point Map below Density Plot" /><figcaption aria-hidden="true">Add Point Map below Density Plot</figcaption>
+</figure>
+<p>We hide the title of the graphs by right-clicking on it and hiding the title:</p>
+<figure>
+<img src="images/246-HideTitle.png" alt="Hide Title" /><figcaption aria-hidden="true">Hide Title</figcaption>
+</figure>
+<p>We make sure that all the filters are applied across all visualisations by changing their settings:</p>
+<figure>
+<img src="images/246-EnsuringFiltersApplyThroughout.png" alt="Change Settings for Filters" /><figcaption aria-hidden="true">Change Settings for Filters</figcaption>
+</figure>
+<p>Next, we make sure that any selections on any visualisation will change the selection for other visualisations as well. This can be achieved by a Filter Action as follows:</p>
+<figure>
+<img src="images/246-SelectionFilter.png" alt="Selection Filter" /><figcaption aria-hidden="true">Selection Filter</figcaption>
+</figure>
+<p>Next, we rearranged the various parameters and filters, and added a title, source and notes to the bottom.</p>
+<figure>
+<img src="images/246-AddTitleNotesSource.png" alt="Added title, source and notes" /><figcaption aria-hidden="true">Added title, source and notes</figcaption>
+</figure>
+<p>The final dashboard is as follows:</p>
+<figure>
+<img src="images/246-FinalDashboard.png" alt="Final Dashboard" /><figcaption aria-hidden="true">Final Dashboard</figcaption>
+</figure>
+<h2 id="major-observations">2.5 Major Observations</h2>
+<blockquote>
+<ol start="5" type="a">
+<li>Describe five major observations revealed by the data visualisation prepared.</li>
+</ol>
+</blockquote>
+<p>Using the proposed data visualisations, we can observe the following:</p>
+<ol type="1">
+<li><p>The number of protests in South East Asia has been steadily increasing, from <strong>424</strong> in <strong>2010</strong> to <strong>2,224</strong> for the <strong>1st 10 months of 2020</strong>. Thankfully, the protests did not result in many fatalities.</p>
+<figure>
+<img src="images/25-ProtestsIncreasing.png" alt="Protests have been increasing" /><figcaption aria-hidden="true">Protests have been increasing</figcaption>
+</figure></li>
+<li><p>Philippines contributed to the highest number of events and fatalities across all countries, years and event types in the violence against civilians event type in 2016. She had a total of</p>
+<figure>
+<img src="images/25-PeakYear.png" alt="2016 was a devastating year for Philippines" /><figcaption aria-hidden="true">2016 was a devastating year for Philippines</figcaption>
+</figure>
+<figure>
+<img src="images/25-Philippines2016.png" alt="Breakdown for Philippines in 2016" /><figcaption aria-hidden="true">Breakdown for Philippines in 2016</figcaption>
+</figure></li>
+<li><p>There were many deadly events in both Myanmar and Philippines as evident in the density plot and point plot. While both ranked high in fatalities, Myanmar had more deadly events as can be seen by the size of the circles in the point plot.</p>
+<figure>
+<img src="images/25-DeadlyEvents.png" alt="Deadly events in Myanmar and Philippines" /><figcaption aria-hidden="true">Deadly events in Myanmar and Philippines</figcaption>
+</figure></li>
+<li><p>The number of fatalities resulting from armed clashes and violence against civilians were much higher than the other event types. This is to be expected for armed clashes, but is a worry trend for violence against civilians as civilians are usually less armed than the other actors such as military. We can see that Myanmar and Philippines had the most events of violence against civilians, but Myanmar had the higher fatalities per such event.</p>
+<figure>
+<img src="images/25-DeadlySubEvents.png" alt="High number of fatalities in armed clashes and violence against civilians" /><figcaption aria-hidden="true">High number of fatalities in armed clashes and violence against civilians</figcaption>
+</figure>
+<figure>
+<img src="images/25-DeadlySubEvents2.png" alt="Myanmar and Phillipines had high number of violence against civilians" /><figcaption aria-hidden="true">Myanmar and Phillipines had high number of violence against civilians</figcaption>
+</figure></li>
+<li><p>Myanmar, Thailand and Philippines were the countries with the hotspots for battles, explosions or remote violence, protests, and violence against civilians.</p>
+<figure>
+<img src="images/25-EventLocations.png" alt="Myanmar, Thailand and Philippines hotspots" /><figcaption aria-hidden="true">Myanmar, Thailand and Philippines hotspots</figcaption>
+</figure></li>
+</ol>
+<h1 id="conclusion">3. Conclusion</h1>
+<p>In this post, we look at how to present conflict data for South East Asia. We identify areas of improvement in terms of clarity, aesthetics and interactivity for the existing visualisation and propose changes to improve the visualisation. We implemented the changes in Tableau and were able to arrive at more insights than the original visualisation.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
