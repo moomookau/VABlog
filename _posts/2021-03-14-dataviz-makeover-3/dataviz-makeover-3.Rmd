@@ -1,8 +1,8 @@
 ---
 title: "DataViz Makeover 3"
 description: |
-  This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement.
-#preview: https://va.moomookau.org/posts/2021-02-05-dataviz-makeover-2/images/03ProposedDashboard.png
+  This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2010-2020 and to identify possible areas of improvement.
+preview: https://va.moomookau.org/posts/2021-03-14-dataviz-makeover-3/images/23-ProposedDesign.png
 author:
   - name: Amos Lau
     url: https://www.linkedin.com/in/amos-lau/
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # 1. Introduction
 
-This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement. A screenshot of the original visualisation is shown below. The original visualisation can be found at [here](https://public.tableau.com/profile/tskam#!/vizhome/South-eastAsiaArmedConflictAnalysis/South-eastAsiaArmedConflictAnalysis){.uri}. The data was sourced from the [The Armed Conflict Location & Event Data Project](https://acleddata.com/) and the data used was the data set from January 2015 to October 2020 for South East Asia.
+This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2010-2020 and to identify possible areas of improvement. A screenshot of the original visualisation is shown below. The original visualisation can be found at [here](https://public.tableau.com/profile/tskam#!/vizhome/South-eastAsiaArmedConflictAnalysis/South-eastAsiaArmedConflictAnalysis){.uri}. The data was sourced from the [The Armed Conflict Location & Event Data Project](https://acleddata.com/) and the data used was the data set from January 2010 to October 2020 for South East Asia.
 
 ![Original Visualisation](images/01-OriginalVisualisation.png)
 

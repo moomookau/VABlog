@@ -7,15 +7,16 @@
     <description>Amos' Visual Analytics Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>DataViz Makeover 3</title>
       <dc:creator>Amos Lau</dc:creator>
       <link>https://va.moomookau.org/posts/2021-03-14-dataviz-makeover-3</link>
-      <description>This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2015-2020 and to identify possible areas of improvement.</description>
+      <description>This post will be looking at an interactive data visualisation created to reveal the spatio-temporal patterns of armed conflict in selected South-east Asia countries between 2010-2020 and to identify possible areas of improvement.</description>
       <category>DataVizMakeover</category>
       <guid>https://va.moomookau.org/posts/2021-03-14-dataviz-makeover-3</guid>
-      <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://va.moomookau.org/posts/2021-03-14-dataviz-makeover-3/images/23-ProposedDesign.png" medium="image" type="image/png"/>
     </item>
     <item>
       <title>Visual Analytics Project Proposal</title>
