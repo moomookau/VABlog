@@ -1,7 +1,8 @@
 ---
 title: "Visual Analytics Assignment - Visualising Country, Skill and Industry Migration"
 description: |
-  This report is part of a group project for our visual analytics module. Our project is titled **VISTAS** - **V**isualising **I**ndustry **S**kill **TA**lent **S**hifts. Each group member is tasked with completing a sub-module of the final group project.
+  This report is part of a group project for our visual analytics module. Our project is titled VISTAS - Visualising Industry Skill TAlent Shifts. Each group member is tasked with completing a sub-module of the final group project.
+preview: https://va.moomookau.org/posts/2021-03-26-visual-analytics-assignment/images/dashboard-choropleth.png
 author:
   - name: Amos Lau
     url: https://www.linkedin.com/in/amos-lau/
@@ -15,9 +16,7 @@ output:
     toc_depth: 3
 ---
 
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # 1. Introduction
@@ -30,7 +29,7 @@ For my part in the project, I will be exploring various techniques for visualisi
 
 The links to my group members' assignments can be found below:
 
-1.  Cheryl Pay - Industry Skills Needs Analysis
+1.  Cheryl Pay - [Industry Skills Needs Analysis](https://cherylpay-isss608.netlify.app/posts/2021-04-04-assignment/)
 
 2.  Louis Chong - [Regression and Correlation Analysis](https://affectionate-dijkstra-f71bd4.netlify.app/posts/2021-04-03-assignment/)
 
@@ -112,19 +111,25 @@ First, we install the packages that are required for our visualisations using th
 
 2.  readxl - The readxl package is used for us to read the excel files which contain our data
 
-3.  maps, geosphere, tmap, sf, leaflet - These packages are used for geospatial manipulation and map visualisations
+3.  maps, geosphere, sf, leaflet - These packages are used for geospatial manipulation and map visualisations
 
 4.  networkD3 - The networkD3 package will be used to visualise various network diagrams, in particular the Sankey diagram
 
-5.  chorddiag, circlize - These packages will be used to explore chord diagrams
+5.  chorddiag - The chorddiag package will be used to explore chord diagrams
+
+6.  randomcoloR - The randomcoloR package is used to generate colour palettes of arbitrary lengths
 
 ```{r message=FALSE, warning=FALSE}
-packages = c('tidyverse', 'readxl', 'maps', 'geosphere', 'tmap', 'sf', 'leaflet', 'rworldmap', 'networkD3', 'chorddiag', 'circlize')
+# list of packages we want to install and/or load
+packages = c('tidyverse', 'readxl', 'maps', 'geosphere', 'sf', 'leaflet', 'rworldmap', 'networkD3', 'chorddiag', 'randomcoloR')
+# loop through the packages
 for (p in packages){
+  # try to load the package using require
   if(!require(p, character.only = TRUE)) {
+    # install the package if require fails
     install.packages(p)
+    library(p, character.only = TRUE)
   }
-  library(p, character.only = TRUE)
 }
 ```
 
@@ -205,22 +210,33 @@ glimpse(countryMigrationPivot)
 Next, we try to come up with a migration flow map using maps and geosphere package. The maps package is used to plot the map and geosphere package is used to calculate the great circle lines on the maps. We first filter the data using Singapore and 2019 to experiment. For every target country, we calculate the great circle plot the lines on the map. The width of the line is based on the ratio of the country's migration to the maximum absolute value of the migration and the colour of the line is either green or red depending on whether the net migration was positive or negative.
 
 ```{r}
+# We set the variables we want to try out
+# In this case, we filter by Singapore and 2019
+filterCountry <- "Singapore"
+filterYear <- 2019
 
-singaporeMigration <- countryMigrationPivot %>%
-  filter(base_country_name == "Singapore", year == 2019)
+# We filter the migration data using the variables above
+flowMapDf <- countryMigrationPivot %>%
+  filter(base_country_name == filterCountry, year == filterYear)
 
-maxMigration <- max(abs(singaporeMigration$net_per_10K))
+# We get the max migration value
+maxMigration <- max(abs(flowMapDf$net_per_10K))
 
-map("world", col="#191919", fill=TRUE, bg="#000000")
+# We create a base map
+map("world", col="#999999", fill=TRUE, bg="#dddddd")
 
-for (j in 1:nrow(singaporeMigration)) {
-    baseLat <- singaporeMigration[j,]$base_lat
-    baseLon <- singaporeMigration[j,]$base_long
-    targetLat <- singaporeMigration[j,]$target_lat
-    targetLon <- singaporeMigration[j,]$target_long
-    migration <- gcIntermediate(c(baseLon, baseLat), c(targetLon, targetLat), n=100, addStartEnd=TRUE)
-    colour = ifelse(singaporeMigration[j,]$net_per_10K >= 0, "green", "red")
-    lines(migration, col=colour, lwd=abs(singaporeMigration[j,]$net_per_10K)/maxMigration*10)
+# We loop through each row of the migration dataset
+for (j in 1:nrow(flowMapDf)) {
+  # we get the base and target lat/long
+  baseLat <- flowMapDf[j,]$base_lat
+  baseLon <- flowMapDf[j,]$base_long
+  targetLat <- flowMapDf[j,]$target_lat
+  targetLon <- flowMapDf[j,]$target_long
+  # we compute a great circle line from the base to the target using gcIntermediate
+  migration <- gcIntermediate(c(baseLon, baseLat), c(targetLon, targetLat), n=100, addStartEnd=TRUE)
+  colour = ifelse(flowMapDf[j,]$net_per_10K >= 0, "green", "red")
+  # we draw the line on the map
+  lines(migration, col=colour, lwd=abs(flowMapDf[j,]$net_per_10K)/maxMigration*10)
 }
 ```
 
@@ -230,29 +246,35 @@ These could be improved by having interactivity on the map to allow for more inf
 
 ## 3.6 Migration flow map using leaflet and sf packages
 
-In order to overcome some of the issues we faced in our previous visualisation using older packages, we attempted to use sf and leaflet to create our migration map.
+In order to overcome some of the issues we faced in our previous visualisation using older packages, we attempted to use sf and leaflet to create our migration map. We use lines to draw the migration to bring the user from the selected country to the target country. Green lines refer to positive net migration while red lines refer to negative net migration. A circular marker is also added to the destination country for users to see where the destination countries are. Tooltips are added to both the lines and the markers to show the user the country and the migration values. The usage of leaflet allows interactivity through tooltips and viewport movement of the map.
 
 ```{r}
-singaporeMigrationSf <- countryMigrationPivot %>%
-  filter(base_country_name == "Singapore", year == 2019)
+# We set the variables we want to try out
+# In this case, we filter by Singapore and 2019
+filterCountry <- "Singapore"
+filterYear <- 2019
 
-singaporeSfg <- vector(mode = "list", length = nrow(singaporeMigration))
+# We filter the migration data using the variables above
+flowMapSf <- countryMigrationPivot %>%
+  filter(base_country_name == filterCountry, year == filterYear)
 
-for (j in 1:nrow(singaporeMigration)) {
-  singaporeSfg[[j]] <- st_linestring(rbind(c(singaporeMigrationSf[j,]$base_long,singaporeMigrationSf[j,]$base_lat),c(singaporeMigrationSf[j,]$target_long,singaporeMigrationSf[j,]$target_lat)))
+flowMapSfg <- vector(mode = "list", length = nrow(flowMapSf))
+
+for (j in 1:nrow(flowMapSf)) {
+  flowMapSfg[[j]] <- st_linestring(rbind(c(flowMapSf[j,]$base_long,flowMapSf[j,]$base_lat),c(flowMapSf[j,]$target_long,flowMapSf[j,]$target_lat)))
 }
 
-maxMigration = max(abs(singaporeMigrationSf$net_per_10K))
+maxMigration = max(abs(flowMapSf$net_per_10K))
 
-singaporeSf <- singaporeSfg %>%
+flowMapSf <- flowMapSfg %>%
   st_sfc(crs = 4326) %>%
   st_sf(geometry = .) %>%
-  cbind(singaporeMigrationSf) %>%
+  cbind(flowMapSf) %>%
   mutate(colour = ifelse(net_per_10K > 0, "green", "red"), value=log(abs(net_per_10K))*5) %>%
   mutate(label = lapply(paste0("Country: ",target_country_name,"<br/>Net migration: ",net_per_10K), htmltools::HTML)) %>%
   filter(value != 0)
 
-singaporeSf %>%
+flowMapSf %>%
   st_segmentize(units::set_units(100, km)) %>%
   mutate(geometry = (geometry + c(180,90)) %% c(360) - c(180,90)) %>%
   st_wrap_dateline(options = c("WRAPDATELINE=YES",  "DATELINEOFFSET=180"), quiet = TRUE) %>% 
@@ -273,96 +295,104 @@ singaporeSf %>%
 
 ```
 
+## 3.7 Choropleth map using leaflet and rworldmap packages
+
+An alternative to migration flow maps could be choropleth maps, which highlight areas according to their values. The migration flow map may be too confusing if there are too many lines overlapping each other, even if the user is able to zoom. In this visualisation, we explore choropleth maps using leaflet and rworldmap.
+
 ```{r}
-singaporeMigrationSf <- countryMigrationPivot %>%
-  filter(base_country_name == "Singapore", year == 2019)
+# We set the variables we want to try out
+# In this case, we filter by Singapore and 2019
+filterCountry <- "Singapore"
+filterYear <- 2019
 
-linestrings_sfg <- vector(mode = "list", length = nrow(singaporeMigration))
+# We create the choropleth data using the variables above
+migrationChoropleth <- countryMigrationPivot %>%
+  filter(base_country_name == filterCountry, year == filterYear) %>%
+  select(target_country_name, net_per_10K) %>%
+  mutate(label = lapply(paste0("Country: ",target_country_name,"<br/>Net migration: ",net_per_10K), htmltools::HTML))
 
-for (j in 1:nrow(singaporeMigration)) {
-  linestrings_sfg[[j]] <- st_linestring(rbind(c(singaporeMigrationSf[j,]$base_long,singaporeMigrationSf[j,]$base_lat),c(singaporeMigrationSf[j,]$target_long,singaporeMigrationSf[j,]$target_lat)))
-}
+# We use joinCountryData2Map to join the data with the spatial data
+migrationChoroplethMap <- joinCountryData2Map(migrationChoropleth, joinCode = "NAME", nameJoinColumn = "target_country_name") %>%
+  spatialEco::sp.na.omit(col.name = "net_per_10K")
 
-singaporeMigrationChloropeth <- singaporeMigrationSf %>%
-  select(target_country_name, net_per_10K)
+# We compute the max migration, rounding up to the nearest 5
+maxMigration = plyr::round_any(max(abs(migrationChoropleth$net_per_10K)),5, f=ceiling)
 
-singaporeMigrationChloropethMap <- joinCountryData2Map(singaporeMigrationChloropeth, joinCode = "NAME", nameJoinColumn = "target_country_name")
+# We create the bins and a diverging palette
+bins <- seq(-maxMigration, maxMigration, 5)
+pal <- colorBin("RdBu", bins = bins)
 
-collection_sf <- linestrings_sfg %>%
-  st_sfc(crs = 4326) %>%
-  st_sf(geometry = .) %>%
-  cbind(singaporeMigrationSf) %>%
-  mutate(colour = ifelse(net_per_10K > 0, "green", "red"), value=abs(net_per_10K)) %>%
-  mutate(label = lapply(paste(sep="<br/>",target_country_name,net_per_10K), htmltools::HTML))
-
-maxMigration = max(abs(singaporeMigrationSf$net_per_10K))
-
-bins <- c(-maxMigration, 0, maxMigration)
-pal <- colorBin("RdBu", domain = singaporeMigrationChloropeth$net_per_10K, bins = bins)
-
-collection_sf %>%
-  st_segmentize(units::set_units(100, km)) %>%
-  mutate(geometry = (geometry + c(180,90)) %% c(360) - c(180,90)) %>%
-  st_wrap_dateline(options = c("WRAPDATELINE=YES",  "DATELINEOFFSET=180"), quiet = TRUE) %>% 
+# We plot the migration choropleth map
+migrationChoroplethMap %>%
   leaflet() %>%
   addTiles() %>%
-  addPolylines(label = ~label,
-               color = ~colour,
-               weight = ~value) %>%
-  addPolygons(data=singaporeMigrationChloropethMap,
-              fillColor = ~pal(net_per_10K),
+  addPolygons(fillColor = ~pal(net_per_10K),
+              label = ~label,
               weight = 2,
               opacity = 1,
               color = "white",
               dashArray = "3",
-              fillOpacity = 0.7)
+              fillOpacity = 0.7) %>%
+  addLegend(pal = pal, values = ~net_per_10K, opacity = 0.7, title = NULL,
+    position = "bottomright")
 ```
 
-# Attempting Sankey Diagram
+## 3.8 Sankey diagram using networkD3
+
+Next, we try to plot the sankey diagram around the selected couuntry. We position the selected country in the middle with countries with positive net migration on the left and countries with negative net migration on the right to represent movement from left to right. The sankey diagram is useful to compare the inflow and outflow values by comparing the left and right. It also lets the user have an appreciation of the top countries as it is sorted by the values. From the visualisation below, we can see that Singapore imports more than exports talent, and the top country we import and export from and to are India and Australia respectively.
 
 ```{r}
-# Set chosen parameters
-chosenCountry <- "Singapore"
-chosenYear <- 2019
+# We set the variables we want to try out
+# In this case, we filter by Singapore and 2019
+filterCountry <- "Singapore"
+filterYear <- 2019
+
+# Further, we set whether we want to colour the countries by their region or income groups
 colourGroups <- c("region","income_group")
 # Set parameter to colour group by - "region" (1) or "income_group" (2)
 chosenGroup <- 2
 
+# We get a distinct country dataframe with their corresponding income group and region
 countryDf <- countryMigrationPivot %>%
   distinct(base_country_name, base_country_wb_income, base_country_wb_region) %>%
   rename(country = base_country_name, income_group = base_country_wb_income, region = base_country_wb_region)
 
+# We get the migration df we want to plot the sankey diagram
 migrationDf <- countryMigrationPivot %>%
-  filter(base_country_name == chosenCountry, year == chosenYear, net_per_10K != 0) %>%
+  filter(base_country_name == filterCountry, year == filterYear, net_per_10K != 0) %>%
   select(base_country_name, target_country_name, net_per_10K)
 
+# We swap the dataframe depending on whether the net migration is positive or negative
 migrationSwapDf <- as.data.frame(migrationDf %>%
   mutate(source = ifelse(net_per_10K >= 0, target_country_name, base_country_name)) %>%
   mutate(target = ifelse(net_per_10K >= 0, base_country_name, target_country_name)) %>%
   mutate(value = abs(net_per_10K)*10000) %>%
   select(source, target, value))
 
+# We get the absolute values for all countries. This will be used to sort the countries
 valuesDf <- migrationDf %>%
   mutate(country = target_country_name) %>%
   mutate(value = abs(net_per_10K)) %>%
   select(country, value)
 
+# We create the nodes
 nodes <- data.frame(
   name=c(as.character(migrationSwapDf$source), 
   as.character(migrationSwapDf$target)) %>% unique()
-)
-
-nodes <- nodes %>%
+) %>%
   left_join(countryDf, by=c("name"="country")) %>%
   left_join(valuesDf, by=c("name"="country")) %>%
   replace_na(list(value = 0)) %>%
   arrange(desc(value))
 
+# We set their IDs
 migrationSwapDf$IDsource <- match(migrationSwapDf$source, nodes$name)-1 
 migrationSwapDf$IDtarget <- match(migrationSwapDf$target, nodes$name)-1
 
+# We set the colour scale
 my_color <- 'd3.scaleOrdinal(d3.schemeCategory10)'
 
+# We create the sankey plot
 p <- sankeyNetwork(Links = migrationSwapDf, Nodes = nodes,
               Source = "IDsource", Target = "IDtarget",
               Value = "value", NodeID = "name",
@@ -372,53 +402,107 @@ p <- sankeyNetwork(Links = migrationSwapDf, Nodes = nodes,
 p
 ```
 
-# Attempting Chord Diagram using chorddiag for countries
+## 3.9 Chord diagram by country using chorddiag
+
+Next, we attempt to draw a chord diagram using the chorddiag package. We were able to plot the chord diagram. We plotted two diagrams - one from the perspective of positive net migration (import) and one from the perspective of negative net migration (export).
+
+However, there were some limitations due to the dataset we had as migration was represented using net migration only; we did not have separate values for import and export. Further, the net migration value represented the net_per_10K based on the base countries' number of LinkedIn members. Therefore, the absolute migration values were not comparable across the countries.
+
+Also, having too many countries made the visualisation cluttered and difficult differentiate.
+
+We explored other ways to make the visualisation less cluttered in the next few sections
 
 ```{r}
+# We set the variables we want to try out
+# In this case, we filter by the year 2019
+filterYear <- 2019
 
+# In order to use the chorddiag package, we create a matrix of the countries
 chordDf <- countryMigrationPivot %>%
-  filter(year == 2019) %>%
+  filter(year == filterYear) %>%
   select(base_country_name, target_country_name, net_per_10K) %>%
   pivot_wider(names_from=target_country_name, values_from = net_per_10K, values_fill = 0, names_sort=TRUE) %>%
   arrange(base_country_name) %>%
   column_to_rownames("base_country_name")
 
-countryRegionDf <- countryDf %>%
-  arrange(country)
-
 countryNames <- row.names(chordDf)
 
+# We create separate dataframes with positive and negative values
 chordPosDf <- chordDf
 chordPosDf[chordPosDf<0] <- 0.0
-
 chordNegDf <- chordDf
-chordNegDf[chordNegDf>0] <- 0.0
+chordNegDf[chordNegDf>=0] <- 0.0
 chordNegDf <- abs(chordNegDf)
 
+# We convert the dataframes into matrices to be used with the chorddiag function
 chordPosMatrix <- as.matrix(chordPosDf)
 chordNegMatrix <- as.matrix(chordNegDf)
 
-groupNames <- as.vector(countryRegionDf[,"region"])
+# We create a palette
+colours <- distinctColorPalette(length(countryNames))
 
-p <- chorddiag(chordPosMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.01)
+# We plot the chord diagram
+p <- chorddiag(chordPosMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.01, groupColors = colours, precision=3, showZeroTooltips = FALSE)
 p
 
-p <- chorddiag(chordPosMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.1, groupPadding=1)
+p <- chorddiag(chordNegMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.01, groupColors = colours, precision=3, showZeroTooltips = FALSE)
 p
-
-#p <- chorddiag(chordNegMatrix, height=1000, width=1000)
-#p
-
 ```
 
-# Attepting Chord Diagram with chorddiag per region
+## 3.10 Chord diagram by country by region using chorddiag
+
+In order to reduce the clutteredness, we try drawing the chord diagrams but only for a certain region. This visualisation was less cluttered, but we were only able to visualise intra-region migration.
+
+```{r}
+# We set the variables we want to try out
+# In this case, we filter by the year 2019
+filterYear <- 2019
+filterRegion <- "East Asia & Pacific"
+
+# In order to use the chorddiag package, we create a matrix of the countries
+chordDf <- countryMigrationPivot %>%
+  filter(year == filterYear,
+         base_country_wb_region == filterRegion,
+         target_country_wb_region == filterRegion) %>%
+  select(base_country_name, target_country_name, net_per_10K) %>%
+  pivot_wider(names_from=target_country_name, values_from = net_per_10K, values_fill = 0, names_sort=TRUE) %>%
+  arrange(base_country_name) %>%
+  column_to_rownames("base_country_name")
+
+countryNames <- row.names(chordDf)
+
+# We create separate dataframes with positive and negative values
+chordPosDf <- chordDf
+chordPosDf[chordPosDf<0] <- 0.0
+chordNegDf <- chordDf
+chordNegDf[chordNegDf>=0] <- 0.0
+chordNegDf <- abs(chordNegDf)
+
+# We convert the dataframes into matrices to be used with the chorddiag function
+chordPosMatrix <- as.matrix(chordPosDf)
+chordNegMatrix <- as.matrix(chordNegDf)
+
+# We create a palette
+colours <- distinctColorPalette(length(countryNames))
+
+# We plot the chord diagram
+p <- chorddiag(chordPosMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.01, groupColors = colours, precision=3, showZeroTooltips = FALSE)
+p
+
+p <- chorddiag(chordNegMatrix, height=1000, width=1000, groupnamePadding = 20, showTicks = FALSE, groupThickness = 0.01, groupColors = colours, precision=3, showZeroTooltips = FALSE)
+p
+```
+
+## 3.11 Chord diagram by region using chorddiag
+
+Next, we tried to group the data by regions in order to reduce the clutteredness. The chord diagram grouped the countries by their region. Since the net migration values were represented as proportions, we took the means of these values instead of the sum when grouping.
 
 ```{r}
 chordDfPos2 <- countryMigrationPivot %>%
   filter(year == 2019, net_per_10K >= 0) %>%
   group_by(base_country_wb_region, target_country_wb_region) %>%
-  summarise(sum=sum(net_per_10K)) %>%
-  pivot_wider(names_from=target_country_wb_region,values_from = sum, values_fill = 0.0, names_sort = TRUE) %>%
+  summarise(avg=mean(net_per_10K)) %>%
+  pivot_wider(names_from=target_country_wb_region,values_from = avg, values_fill = 0.0, names_sort = TRUE) %>%
   arrange(base_country_wb_region) %>%
   column_to_rownames("base_country_wb_region")
 
@@ -429,8 +513,8 @@ chorddiag(chordMatPos2)
 chordDfNeg2 <- countryMigrationPivot %>%
   filter(year == 2019, net_per_10K < 0) %>%
   group_by(base_country_wb_region, target_country_wb_region) %>%
-  summarise(sum=mean(net_per_10K)) %>%
-  pivot_wider(names_from=target_country_wb_region,values_from = sum, values_fill = 0.0, names_sort = TRUE) %>%
+  summarise(avg=mean(net_per_10K)) %>%
+  pivot_wider(names_from=target_country_wb_region,values_from = avg, values_fill = 0.0, names_sort = TRUE) %>%
   arrange(base_country_wb_region) %>%
   column_to_rownames("base_country_wb_region") %>%
   abs()
@@ -440,4 +524,28 @@ chordMatNeg2 <- as.matrix(chordDfNeg2)
 chorddiag(chordMatNeg2)
 ```
 
+# 4 Dashboard Prototyping
 
+This assignment will eventually be used and combined with works of the other project group members into a shiny dashboard for analysis.
+
+The proposed prototype for the dashboard is as follows, with elaboration on the part on migration analysis.
+
+It is proposed to use the shiny dashboard layout for the dashboard. There will be items on the sidebar to select for the different analyses. On clicking on migration analysis, it will bring the user to the usage guide.
+
+![Dashboard Layout](images/dashboard-main.png)
+
+Next, the user will be able to click on the various tabs on the top to show the flow map, choropleth map, sankey diagram and chord diagram. The proposed layout for the various tabs are shown in the following images. Options will be on the left and the visualisation will be shown on the right.
+
+![Proposed Flow Map Layout for the Dashboard](images/dashboard-flow.png)
+
+![Proposed Choropleth Layout for the Dashboard](images/dashboard-choropleth.png)
+
+![Proposed Sankey Layout for the Dashboard](images/dashboard-sankey.png)
+
+![Proposed Chord Layout for the Dashboard](images/dashboard-chord.png)
+
+# 5 Conclusion
+
+The proposed visualisations will allow users to visualise migration trends by Country, Industry and Skills. The migration flow map, choropleth map and sankey diagram allow the viewer to visualise which are the top countries, industries and skills a selected country is gaining from, while the chord diagram allows the viewer to visualise the movement individual regions or the whole world aggregated at regions.
+
+Based on the preliminary visualisations we have gotten for Singapore, we can see that Singapore imports more talent than exports them. Singapore imports most from India and exports most to Australia. However, this slightly differs from the following Straits Times report at <https://www.straitstimes.com/singapore/migrants-in-spore-mostly-from-malaysia> which shows that Malaysia has the biggest share of migrants in Singapore. The source of data for the Straits Times report is <https://www.un.org/en/development/desa/population/migration/data/estimates2/estimates19.asp>. This difference could be attributed to how LinkedIn data is not representative of the total workforce, but has better coverage of white-collar workers in knowledge-intensive sectors.
