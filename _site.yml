@@ -21,6 +21,8 @@ navbar:
       menu:
       - text: "Proposal"
         href: /posts/2021-02-21-visual-analytics-project-proposal/
+      - text: "Assignment"
+        href: /posts/2021-03-26-visual-analytics-assignment/
     - text: "About"
       href: about.html
 output: 
