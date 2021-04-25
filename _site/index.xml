@@ -7,17 +7,18 @@
     <description>Amos' Visual Analytics Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 19 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Apr 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Visual Analytics Project</title>
       <dc:creator>Amos Lau</dc:creator>
       <dc:creator>Cheryl Pay</dc:creator>
       <dc:creator>Louis Chong</dc:creator>
       <link>https://va.moomookau.org/posts/2021-04-20-visual-analytics-project</link>
-      <description>VISTAS - Visualising Industry Skill TAlent Shifts</description>
+      <description>This post provides an overview of our project VISTAS (Visualising Industry Skill TAlent Shifts) as well as links to the application, proposal, poster, research paper and Github repository.
+preview: https://va.moomookau.org/files/Application.png</description>
       <category>Project</category>
       <guid>https://va.moomookau.org/posts/2021-04-20-visual-analytics-project</guid>
-      <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Visual Analytics Assignment - Visualising Country, Skill and Industry Migration</title>
