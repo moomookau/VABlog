@@ -23,6 +23,10 @@ navbar:
         href: /posts/2021-02-21-visual-analytics-project-proposal/
       - text: "Assignment"
         href: /posts/2021-03-26-visual-analytics-assignment/
+      - text: "Project"
+        href: /posts/2021-04-20-visual-analytics-project/
+      - text: "Application"
+        href: http://moomookau.shinyapps.io/VISTAS
     - text: "About"
       href: about.html
 output: 

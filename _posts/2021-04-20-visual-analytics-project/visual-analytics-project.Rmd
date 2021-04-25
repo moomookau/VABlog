@@ -1,0 +1,46 @@
+---
+title: "Visual Analytics Project"
+description: |
+  VISTAS - Visualising Industry Skill TAlent Shifts
+author:
+  - name: Amos Lau
+    url: https://www.linkedin.com/in/amos-lau/
+  - name: Cheryl Pay
+  - name: Louis Chong
+date: 04-20-2021
+categories:
+  - Project
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Proposal
+
+Our proposal for VISTAS - Visualising Industry Skill TAlent Shifts can be found [here](/posts/2021-02-21-visual-analytics-project-proposal/).
+
+In the post, you can find the background, project motivation and earlier sketches of our project. The final shiny dashboard differs as we explored more R packages with greater interactivity and added them into our app to create a user-friendly analytical tool.
+
+## Poster
+
+Our poster, created using posterdown in Rmarkdown is available [here](https://va.moomookau.org/files/Poster.pdf). It shows all the visualisation types we have in our app and includes Singapore as a Case Study to showcase insights that can be gathered by using VISTAS.
+
+## Research Paper
+
+The research report available for download [here](https://va.moomookau.org/files/ResearchPaper.pdf) covers an in-depth introduction to the system architecture of our app and the limitations of certain packages that we have used. Insights for our case study on Singapore are also discussed.
+
+## Application
+
+VISTAS is available at <https://moomookau.shinyapps.io/VISTAS/> for you to explore.
+
+## Github
+
+All codes for the application and various artifacts can be found at our project Github at <https://github.com/moomookau/VISTAS/>.
+
+## Acknowledgements
+
+We would like to thank Prof Kam for his valuable guidance and patience.
