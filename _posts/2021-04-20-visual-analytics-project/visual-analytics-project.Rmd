@@ -30,7 +30,7 @@ Numerous studies have been conducted to analyse the impact of employment growth 
 
 ## Proposal
 
-Our proposal for VISTAS - Visualising Industry Skill TAlent Shifts can be found [here](posts/2021-02-21-visual-analytics-project-proposal/).
+Our proposal for VISTAS - Visualising Industry Skill TAlent Shifts can be found [here](/posts/2021-02-21-visual-analytics-project-proposal/).
 
 In the post, you can find the background, project motivation and earlier sketches of our project. The final shiny dashboard differs as we explored more R packages with greater interactivity and added them into our app to create a user-friendly analytical tool.
 
