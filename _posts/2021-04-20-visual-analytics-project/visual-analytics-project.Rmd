@@ -2,7 +2,7 @@
 title: "Visual Analytics Project"
 description: |
   This post provides an overview of our project VISTAS (Visualising Industry Skill TAlent Shifts) as well as links to the application, proposal, poster, research paper and Github repository.
-  preview: https://va.moomookau.org/files/Application.png
+preview: https://va.moomookau.org/files/Application.png
 author:
   - name: Amos Lau
     url: https://www.linkedin.com/in/amos-lau/
